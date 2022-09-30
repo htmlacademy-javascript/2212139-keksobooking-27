@@ -85,7 +85,8 @@ const PHOTOS = [
 const similarOfferCount = 10;
 
 const createOffer = () => ({
-  author: {avatar: `img/avatars/user${'(getRandomPositiveInteger(0, 10))'.padStart(2, '0')}.png`},
+  author: {avatar:
+    `img/avatars/user${getRandomPositiveInteger(0, 10).toString().padStart(2, '0')}.png`},
   offer: {
     title: 'Предложение',
     address: `${getRandomPositiveFloat(35.65000, 35.70000, 5)},
