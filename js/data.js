@@ -28,7 +28,7 @@ const PHOTOS = [
 ];
 
 
-const similarOfferCount = 10;
+const similarOfferCount = 1;
 
 const createOffer = () => ({
   author: {
