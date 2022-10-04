@@ -40,16 +40,16 @@ const createOffer = () => ({
     address: `${getRandomPositiveFloat(35.65000, 35.70000, 5)},
               ${getRandomPositiveFloat(139.70000, 139.80000, 5)}`,
     price: getRandomPositiveInteger(1000, 3000),
-    type: TYPE[getRandomPositiveInteger(0, 4)],
+    type: TYPE[getRandomPositiveInteger(0, TYPE.length - 1)],
     rooms: getRandomPositiveInteger(1, 6),
     quests: getRandomPositiveInteger(2, 8),
-    checkin: CHECKIN[getRandomPositiveInteger(0, 2)],
-    checkout: CHECKIN[getRandomPositiveInteger(0, 2)],
-    features: FEATURES.slice(0, getRandomPositiveInteger(0, 5)),
+    checkin: CHECKIN[getRandomPositiveInteger(0, CHECKIN.length - 1)],
+    checkout: CHECKIN[getRandomPositiveInteger(0, CHECKIN.length - 1)],
+    features: FEATURES.slice(0, getRandomPositiveInteger(0, FEATURES.length - 1)),
     description: 'Великолепная квартира-студия в центре Токио. ' +
       'Подходит как туристам, так и бизнесменам. Квартира' +
       ' полностью укомплектована и недавно отремонтирована.',
-    photos: PHOTOS.slice(0, getRandomPositiveInteger(0, 2))
+    photos: PHOTOS.slice(0, getRandomPositiveInteger(0, PHOTOS.length - 1))
   },
   location: {
     lat: getRandomPositiveFloat(35.65000, 35.70000, 5),
