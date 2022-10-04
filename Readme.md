@@ -2,7 +2,7 @@
 
 * Студент: [Алексей Макеев](https://up.htmlacademy.ru/javascript/27/user/2212139).
 
-* Наставник: [Арсений Матыцин] (<https://htmlacademy.ru/profile/id225539>).
+* Наставник: [Арсений Матыцин](<https://htmlacademy.ru/profile/id225539>).
 
 ---
 
