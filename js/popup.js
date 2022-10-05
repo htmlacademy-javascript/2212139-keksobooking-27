@@ -8,48 +8,59 @@ const similarOffers = createOffers();
 
 const similarListFragment = document.createDocumentFragment();
 
+
 similarOffers.forEach(({ author, offer }) => {
 
   const offerElement = similarOffersTemplate.cloneNode(true);
+
+  const setHidden = (selector) => offerElement.querySelector(selector).classList.add('hidden');
+
   if (!author.avatar) {
-    offerElement.querySelector('.popup__avatar').classList.add('hidden');
+    setHidden('.popup__avatar');
   } else {
     offerElement.querySelector('.popup__avatar').src = author.avatar;
   }
+
   if (!offer.title) {
-    offerElement.querySelector('.popup__title').classList.add('hidden');
+    setHidden('.popup__title');
   } else {
     offerElement.querySelector('.popup__title').textContent = offer.title;
   }
+
   if (!offer.address) {
-    offerElement.querySelector('.popup__text--address').classList.add('hidden');
+    setHidden('.popup__text--address');
   } else {
     offerElement.querySelector('.popup__text--address').textContent = offer.address;
   }
+
   if (!offer.price) {
-    offerElement.querySelector('.popup__text--price').classList.add('hidden');
+    setHidden('.popup__text--price');
   } else {
     offerElement.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
   }
+
   if (!offer.type) {
-    offerElement.querySelector('.popup__type').classList.add('hidden');
+    setHidden('.popup__type');
   } else {
-    offerElement.querySelector('.popup__type').textContent = typeOfRoom[offer.type];
+    offerElement.querySelector('.popup__type').textContent = offer.type;
   }
+
   if (!offer.rooms || !offer.quests) {
-    offerElement.querySelector('.popup__text--capacity').classList.add('hidden');
+    setHidden('.popup__text--capacity');
   } else {
     offerElement.querySelector('.popup__text--capacity').textContent =
       `${offer.rooms} комнаты для ${offer.quests} гостей`;
   }
+
   if (!offer.checkin || !offer.checkout) {
-    offerElement.querySelector('.popup__text--time').classList.add('hidden');
+    setHidden('.popup__text--time');
   } else {
     offerElement.querySelector('.popup__text--time').textContent =
       `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   }
+
   if (!offer.description) {
-    offerElement.querySelector('.popup__description').classList.add('hidden');
+    setHidden('.popup__description');
   } else {
     offerElement.querySelector('.popup__description').textContent = offer.description;
   }
@@ -58,29 +69,37 @@ similarOffers.forEach(({ author, offer }) => {
   if (!offer.features.length) {
     featuresList.classList.add('hidden');
   } else {
+    const fragment = document.createDocumentFragment();
     featuresList.innerHTML = '';
     for (let i = 0; i < offer.features.length; i++) {
-      const featureElement =
-        `<li class="popup__feature popup__feature--${offer.features[i]}"></li>`;
-      featuresList.insertAdjacentHTML('afterbegin', featureElement);
+      const featureElement = document.createElement('li');
+      featureElement.classList.add('popup__feature');
+      featureElement.classList.add(`popup__feature--${offer.features[i]}`);
+      fragment.appendChild(featureElement);
     }
+    featuresList.appendChild(fragment);
   }
 
   const photosList = offerElement.querySelector('.popup__photos');
   if (!offer.photos.length) {
     photosList.classList.add('hidden');
   } else {
+    const fragment = document.createDocumentFragment();
     photosList.innerHTML = '';
     for (let i = 0; i < offer.photos.length; i++) {
-      const imgElement =
-        `<img src="${offer.photos[i]}" class="popup__photo" width="45"` +
-        'height="40" alt="Фотография жилья">';
-      photosList.insertAdjacentHTML('afterbegin', imgElement);
+      const photoElement = document.createElement('img');
+      photoElement.src = `${offer.photos[i]}`;
+      photoElement.width = '45';
+      photoElement.height = '40';
+      photoElement.alt = 'Фотография жилья';
+      photoElement.classList.add('popup__photo');
+      fragment.appendChild(photoElement);
     }
+    photosList.appendChild(fragment);
   }
 
   similarListFragment.appendChild(offerElement);
-
-  document.querySelector('#map-canvas').appendChild(similarListFragment);
 });
+
+export { similarListFragment };
 

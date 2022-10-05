@@ -94,9 +94,9 @@ const createOfferArray = (count) => {
         quests: getRandomArrayMinMax(GUEST),
         checkin: getRandomArrayElement(CHECKINS),
         checkout: getRandomArrayElement(CHECKINS),
-        features: FEATURES.slice(0, getRandomArrayElement(FEATURES)),
+        features: FEATURES, //FEATURES.slice(0, getRandomArrayElement(FEATURES)),
         description: getRandomArrayElement(DESCRIPTION),
-        photos: PHOTOS.slice(0, getRandomArrayElement(PHOTOS))
+        photos: PHOTOS // PHOTOS.slice(0, getRandomArrayElement(PHOTOS))
       },
       location: {
         lat: getRandomPositiveFloat(LAT.MIN, LAT.MAX, PRECISION),
