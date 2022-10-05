@@ -1,4 +1,4 @@
-import { getRandomPositiveInteger, getRandomPositiveFloat } from './util.js';
+import { getRandomPositiveInteger, getRandomPositiveFloat, getRandomArray } from './util.js';
 
 const TYPES = [
   'palace',
@@ -94,9 +94,9 @@ const createOfferArray = (count) => {
         quests: getRandomArrayMinMax(GUEST),
         checkin: getRandomArrayElement(CHECKINS),
         checkout: getRandomArrayElement(CHECKINS),
-        features: FEATURES, //FEATURES.slice(0, getRandomArrayElement(FEATURES)),
+        features: getRandomArray(FEATURES),
         description: getRandomArrayElement(DESCRIPTION),
-        photos: PHOTOS // PHOTOS.slice(0, getRandomArrayElement(PHOTOS))
+        photos: getRandomArray(PHOTOS)
       },
       location: {
         lat: getRandomPositiveFloat(LAT.MIN, LAT.MAX, PRECISION),
