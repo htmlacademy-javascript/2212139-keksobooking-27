@@ -14,6 +14,7 @@ similarOffers.forEach(({ author, offer }) => {
   const offerElement = similarOffersTemplate.cloneNode(true);
 
   const setHidden = (selector) => offerElement.querySelector(selector).classList.add('hidden');
+  const setTextContent = (selector) => offerElement.querySelector(selector);
 
   if (!author.avatar) {
     setHidden('.popup__avatar');
@@ -24,45 +25,45 @@ similarOffers.forEach(({ author, offer }) => {
   if (!offer.title) {
     setHidden('.popup__title');
   } else {
-    offerElement.querySelector('.popup__title').textContent = offer.title;
+    setTextContent('.popup__title').textContent = offer.title;
   }
 
   if (!offer.address) {
     setHidden('.popup__text--address');
   } else {
-    offerElement.querySelector('.popup__text--address').textContent = offer.address;
+    setTextContent('.popup__text--address').textContent = offer.address;
   }
 
   if (!offer.price) {
     setHidden('.popup__text--price');
   } else {
-    offerElement.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
+    setTextContent('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
   }
 
   if (!offer.type) {
     setHidden('.popup__type');
   } else {
-    offerElement.querySelector('.popup__type').textContent = offer.type;
+    setTextContent('.popup__type').textContent = offer.type;
   }
 
   if (!offer.rooms || !offer.quests) {
     setHidden('.popup__text--capacity');
   } else {
-    offerElement.querySelector('.popup__text--capacity').textContent =
+    setTextContent('.popup__text--capacity').textContent =
       `${offer.rooms} комнаты для ${offer.quests} гостей`;
   }
 
   if (!offer.checkin || !offer.checkout) {
     setHidden('.popup__text--time');
   } else {
-    offerElement.querySelector('.popup__text--time').textContent =
+    setTextContent('.popup__text--time').textContent =
       `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   }
 
   if (!offer.description) {
     setHidden('.popup__description');
   } else {
-    offerElement.querySelector('.popup__description').textContent = offer.description;
+    setTextContent('.popup__description').textContent = offer.description;
   }
 
   const featuresList = offerElement.querySelector('.popup__features');
