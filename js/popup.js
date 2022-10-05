@@ -1,13 +1,5 @@
 import { createOffers } from './data.js';
 
-const typeOfRoom = {
-  flat: 'Квартира',
-  bungalow: 'Бунгало',
-  house: 'Дом',
-  palace: 'Дворец',
-  hotel: 'Отель'
-};
-
 const similarOffersTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
