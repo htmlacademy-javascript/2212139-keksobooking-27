@@ -1,5 +1,3 @@
-import { createOffers } from './data.js';
+import { similarListFragment } from './popup.js';
 
-
-// eslint-disable-next-line no-console
-console.log(createOffers());
+document.querySelector('#map-canvas').appendChild(similarListFragment);
