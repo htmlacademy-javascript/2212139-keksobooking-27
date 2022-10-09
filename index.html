@@ -142,6 +142,7 @@
         <form
           class="ad-form"
           method="post"
+          action="https://27.javascript.pages.academy/keksobooking"
           enctype="multipart/form-data"
           autocomplete="off"
         >
@@ -186,7 +187,15 @@
               id="title"
               name="title"
               type="text"
+              name="username"
+              required
+              minlength="30"
+              maxlength="100"
               placeholder="Милая, уютная квартирка в центре Токио"
+              data-pristine-required-message="Обязательное поле"
+              data-pristine-minlength-message="Минимальная длина 30 символов"
+              data-pristine-maxlength-message="Максимальная длина 100 символов"
+            />
             />
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--wide">
@@ -207,7 +216,14 @@
           </fieldset>
           <fieldset class="ad-form__element">
             <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-            <input id="price" name="price" type="number" placeholder="5000" />
+            <input
+              id="price"
+              name="price"
+              type="number"
+              placeholder="5000"
+              required
+              max="100000"
+            />
             <div class="ad-form__slider"></div>
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--time">
@@ -457,6 +473,7 @@
         <button type="button" class="error__button">Попробовать снова</button>
       </div>
     </template>
+    <script src="pristine/pristine.js"></script>
     <script src="./js/main.js" type="module"></script>
   </body>
 </html>
