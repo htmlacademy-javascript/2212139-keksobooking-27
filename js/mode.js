@@ -13,13 +13,8 @@ const setActivateForm = (elements, isEnabled) => {
 };
 
 const setClassForm = (isAdd) => {
-  if (isAdd) {
-    advertForm.classList.add('ad-form--disabled');
-    map.classList.add('map--faded');
-  } else {
-    advertForm.classList.remove('ad-form--disabled');
-    map.classList.remove('map--faded');
-  }
+  advertForm.classList.toggle('ad-form--disabled', isAdd);
+  map.classList.toggle('map--faded', isAdd);
 };
 
 const modePage = (flag) => {
