@@ -22,7 +22,7 @@ const setClassForm = (isAdd) => {
   }
 };
 
-const deactivatePage = (flag) => {
+const modePage = (flag) => {
   setActivateForm(advertFormElements, flag);
   setActivateForm(mapFilters, !flag);
   setActivateForm(mapCheckBoxes, flag);
@@ -30,12 +30,4 @@ const deactivatePage = (flag) => {
   setClassForm(flag);
 };
 
-const activatePage = (flag) => {
-  setActivateForm(advertFormElements, flag);
-  setActivateForm(mapFilters, !flag);
-  setActivateForm(mapCheckBoxes, flag);
-  setActivateForm(sliders, flag);
-  setClassForm(flag);
-};
-
-export { deactivatePage, activatePage };
+export { modePage };
