@@ -4,8 +4,7 @@ const advertForm = document.querySelector('.ad-form');
 const advertFormElements = advertForm.querySelectorAll('fieldset');
 const mapFilters = document.querySelectorAll('.map__filter');
 const mapCheckBoxes = document.querySelectorAll('.map__checkbox');
-const slider = advertForm.querySelector('.ad-form__slider');
-
+const sliders = advertForm.querySelectorAll('.ad-form__slider');
 
 const setActivateForm = (elements, isEnabled) => {
   elements.forEach((element) => {
@@ -13,22 +12,30 @@ const setActivateForm = (elements, isEnabled) => {
   });
 };
 
-const deactivatePage = () => {
-  setActivateForm(advertFormElements, false);
-  setActivateForm(mapFilters, false);
-  setActivateForm(mapCheckBoxes, false);
-  advertForm.classList.add('ad-form--disabled');
-  map.classList.add('map--faded');
-  slider.setAttribute('disabled', true);
+const setClassForm = (isAdd) => {
+  if (isAdd) {
+    advertForm.classList.add('ad-form--disabled');
+    map.classList.add('map--faded');
+  } else {
+    advertForm.classList.remove('ad-form--disabled');
+    map.classList.remove('map--faded');
+  }
 };
 
-const activatePage = () => {
-  setActivateForm(advertFormElements, true);
-  setActivateForm(mapFilters, true);
-  setActivateForm(mapCheckBoxes, true);
-  advertForm.classList.remove('ad-form--disabled');
-  map.classList.remove('map--faded');
-  slider.removeAttribute('disabled');
+const deactivatePage = (flag) => {
+  setActivateForm(advertFormElements, flag);
+  setActivateForm(mapFilters, !flag);
+  setActivateForm(mapCheckBoxes, flag);
+  setActivateForm(sliders, flag);
+  setClassForm(flag);
+};
+
+const activatePage = (flag) => {
+  setActivateForm(advertFormElements, flag);
+  setActivateForm(mapFilters, !flag);
+  setActivateForm(mapCheckBoxes, flag);
+  setActivateForm(sliders, flag);
+  setClassForm(flag);
 };
 
 export { deactivatePage, activatePage };

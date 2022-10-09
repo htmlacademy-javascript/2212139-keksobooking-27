@@ -4,17 +4,16 @@ import { activatePage, deactivatePage } from './mode.js';
 
 document.querySelector('#map-canvas').appendChild(similarListFragment);
 
-const btn = document.querySelector('img'); // сверху KEKSOBOOKING
 
 let toggle = true;
 
-btn.onclick = () => {
+document.onclick = () => {
   if (toggle) {
-    deactivatePage();
+    deactivatePage(toggle);
     toggle = !toggle;
   }
   else {
-    activatePage();
+    activatePage(toggle);
     toggle = !toggle;
   }
 };
