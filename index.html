@@ -145,6 +145,7 @@
           action="https://27.javascript.pages.academy/keksobooking"
           enctype="multipart/form-data"
           autocomplete="off"
+          novalidate
         >
           <fieldset class="ad-form-header">
             <legend class="ad-form-header__title">
@@ -192,13 +193,12 @@
               required
               data-pristine-required-message="Обязательное поле"
             />
-            />
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--wide">
             <label class="ad-form__label" for="address"
               >Адрес (координаты)</label
             >
-            <input id="address" name="address" type="text" />
+            <input id="address" name="address" type="text" autocomplete="off" />
           </fieldset>
           <fieldset class="ad-form__element">
             <label class="ad-form__label" for="type">Тип жилья</label>
@@ -216,9 +216,9 @@
               id="price"
               name="price"
               type="number"
-              placeholder="5000"
+              placeholder="0"
               required
-              max="100000"
+              data-pristine-required-message="Обязательное поле"
             />
             <div class="ad-form__slider"></div>
           </fieldset>
