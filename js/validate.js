@@ -6,9 +6,9 @@ const validate = () => {
   const pristine = new Pristine(advertForm, {
     classTo: 'ad-form__element',
     errorClass: 'ad-form__element--invalid',
-    successClass: 'ad-form__element',
+    successClass: 'ad-form__element--valid',
     errorTextParent: 'ad-form__element',
-    errorTextTag: 'fieldset',
+    errorTextTag: 'span',
     errorTextClass: 'text-help'
   });
 
@@ -30,7 +30,7 @@ const validate = () => {
 
   // добавление проверки полей "Количество комнат" и "Количество мест"
   const roomsField = document.querySelector('[name="rooms"]');
-  const capacityField = document.querySelector('[name="capacity"]');
+  const guestsField = document.querySelector('[name="capacity"]');
 
   // таблица для создания логики проверки комнат-мест
   const roomsOption = {
@@ -41,17 +41,26 @@ const validate = () => {
   };
   // проверка валидности полей комнат - мест
   function validateRoomsAndCapacity() {
-    if (roomsOption[roomsField.value] === 100 && capacityField.value === '0') {
+    if (roomsOption[roomsField.value] === 100 && guestsField.value === '0') {
       return true;
     }
-    else if (roomsOption[roomsField.value].includes(capacityField.value)) {
+    else if (roomsOption[roomsField.value].includes(guestsField.value)) {
       return true;
     }
     return false;
   }
 
-  pristine.addValidator(roomsField, validateRoomsAndCapacity, 'Не корректные данные');
-  pristine.addValidator(capacityField, validateRoomsAndCapacity, 'Не корректные данные');
+  function getCapacityErrorMessage() {
+    if (roomsField.value === '100') {
+      return 'Не для гостей';
+    } else if (guestsField.value === '0') {
+      return 'Необходимо 100 комнат';
+    }
+    return `Необходимо минимум ${guestsField.value} комнаты.`;
+  }
+
+  pristine.addValidator(roomsField, validateRoomsAndCapacity, getCapacityErrorMessage);
+  pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
 
   // событие, по которому происходит проверка формы
   advertForm.addEventListener('submit', (evt) => {
