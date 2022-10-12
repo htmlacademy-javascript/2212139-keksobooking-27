@@ -1,6 +1,15 @@
 const validate = () => {
   // ссылка на форму
   const advertForm = document.querySelector('.ad-form');
+  const typeOfHouse = advertForm.querySelector('#type');
+
+  const minPrices = {
+    'bungalow': 0,
+    'flat': 1000,
+    'hotel': 3000,
+    'house': 5000,
+    'palace': 10000,
+  };
 
   // создаем экземпляр валидатора
   const pristine = new Pristine(advertForm, {
@@ -25,8 +34,16 @@ const validate = () => {
   const priceField = document.querySelector('#price');
   pristine.addValidator(priceField, validatePrice, 'Не больше 100000 рублей');
   function validatePrice(value) {
-    return value < 100000;
+    if (value < 100000 && value > minPrices[typeOfHouse.value]) {
+      return true;
+    }
+    return false;
   }
+
+  // изменение placeholder при выборе типа жилья
+  typeOfHouse.addEventListener('change', () => {
+    priceField.placeholder = minPrices[typeOfHouse.value];
+  });
 
   // добавление проверки полей "Количество комнат" и "Количество мест"
   const roomsField = document.querySelector('[name="rooms"]');
@@ -78,6 +95,12 @@ const validate = () => {
 
   pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
   pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
+
+  advertForm.addEventListener('change', (evt) => {
+    if (!pristine.validate()) {
+      evt.preventDefault();
+    }
+  });
 
   // событие, по которому происходит проверка формы
   advertForm.addEventListener('submit', (evt) => {
