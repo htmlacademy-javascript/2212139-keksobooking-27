@@ -66,7 +66,6 @@ const validate = () => {
       return 'для 1, 2 или 3 гостей';
     }
 
-
   }
   function getCapacityErrorMessage() {
     if (roomsField.value === '100') {
@@ -82,8 +81,9 @@ const validate = () => {
 
   // событие, по которому происходит проверка формы
   advertForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    pristine.validate();
+    if (!pristine.validate()) {
+      evt.preventDefault();
+    }
   });
 };
 
