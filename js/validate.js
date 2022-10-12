@@ -1,5 +1,5 @@
 const validate = () => {
-  // для добавления на форму стороннего валидатора
+  // ссылка на форму
   const advertForm = document.querySelector('.ad-form');
 
   // создаем экземпляр валидатора
@@ -18,8 +18,8 @@ const validate = () => {
   }
 
   // добавление поля "Заголовок объявления" для проверки валидатором
-  pristine.addValidator(advertForm.querySelector('#title'),
-    validateTitle, 'От 30 до 100 символов');
+  const title = advertForm.querySelector('#title');
+  pristine.addValidator(title, validateTitle, 'От 30 до 100 символов');
 
   // добавление проверки поля "Цена за ночь"
   const priceField = document.querySelector('#price');
@@ -32,7 +32,7 @@ const validate = () => {
   const roomsField = document.querySelector('[name="rooms"]');
   const capacityField = document.querySelector('[name="capacity"]');
 
-  // объект для создания логики проверки комнат-мест
+  // таблица для создания логики проверки комнат-мест
   const roomsOption = {
     1: ['1'],
     2: ['1', '2'],
