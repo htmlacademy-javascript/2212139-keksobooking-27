@@ -49,7 +49,25 @@ const validate = () => {
     }
     return false;
   }
+  function getRoomsErrorMessage() {
+    const room = roomsField.value;
+    const guest = guestsField.value;
 
+    if (room === '100' && guest !== '0') {
+      return 'Не для гостей';
+    }
+    if (room === '1' && guest !== '1') {
+      return 'Для 1 гостя';
+    }
+    if (room === '2' && (guest !== '1' || guest !== '2')) {
+      return 'для 1 или 2 гостей';
+    }
+    if (room === '3' && guest === '0') {
+      return 'для 1, 2 или 3 гостей';
+    }
+
+
+  }
   function getCapacityErrorMessage() {
     if (roomsField.value === '100') {
       return 'Не для гостей';
@@ -59,7 +77,7 @@ const validate = () => {
     return `Необходимо минимум ${guestsField.value} комнаты.`;
   }
 
-  pristine.addValidator(roomsField, validateRoomsAndCapacity, getCapacityErrorMessage);
+  pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
   pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
 
   // событие, по которому происходит проверка формы
