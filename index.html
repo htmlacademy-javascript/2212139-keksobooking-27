@@ -142,8 +142,10 @@
         <form
           class="ad-form"
           method="post"
+          action="https://27.javascript.pages.academy/keksobooking"
           enctype="multipart/form-data"
           autocomplete="off"
+          novalidate
         >
           <fieldset class="ad-form-header">
             <legend class="ad-form-header__title">
@@ -156,6 +158,7 @@
                   alt="Аватар пользователя"
                   width="40"
                   height="44"
+                  accept="image/*"
                 />
               </div>
               <div class="ad-form__field">
@@ -186,14 +189,23 @@
               id="title"
               name="title"
               type="text"
+              name="username"
               placeholder="Милая, уютная квартирка в центре Токио"
+              required
+              data-pristine-required-message="Обязательное поле"
             />
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--wide">
             <label class="ad-form__label" for="address"
               >Адрес (координаты)</label
             >
-            <input id="address" name="address" type="text" />
+            <input
+              id="address"
+              name="address"
+              type="text"
+              autocomplete="off"
+              readonly
+            />
           </fieldset>
           <fieldset class="ad-form__element">
             <label class="ad-form__label" for="type">Тип жилья</label>
@@ -207,7 +219,14 @@
           </fieldset>
           <fieldset class="ad-form__element">
             <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-            <input id="price" name="price" type="number" placeholder="5000" />
+            <input
+              id="price"
+              name="price"
+              type="number"
+              placeholder="0"
+              required
+              data-pristine-required-message="Обязательное поле"
+            />
             <div class="ad-form__slider"></div>
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--time">
@@ -407,6 +426,7 @@
           width="70"
           height="70"
           alt="Аватар пользователя"
+          accept="image/*"
         />
         <h3 class="popup__title">Уютное гнездышко для молодоженов</h3>
         <p class="popup__text popup__text--address">
@@ -457,6 +477,7 @@
         <button type="button" class="error__button">Попробовать снова</button>
       </div>
     </template>
+    <script src="./vendor/pristine/pristine.min.js"></script>
     <script src="./js/main.js" type="module"></script>
   </body>
 </html>
