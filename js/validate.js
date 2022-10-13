@@ -1,8 +1,9 @@
 const validate = () => {
-  // ссылка на форму
+  // ссылка на форму и поле типа жилья
   const advertForm = document.querySelector('.ad-form');
   const typeOfHouse = advertForm.querySelector('#type');
 
+  // объект для установки минимальной цены поля цены за ночь
   const minPrices = {
     'bungalow': 0,
     'flat': 1000,
@@ -30,20 +31,17 @@ const validate = () => {
   const title = advertForm.querySelector('#title');
   pristine.addValidator(title, validateTitle, 'От 30 до 100 символов');
 
+  // установка минимальной цены с учетом выбора типа жилья и
   // добавление проверки поля "Цена за ночь"
   const priceField = document.querySelector('#price');
   pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
   function validatePrice(value) {
+    priceField.placeholder = minPrices[typeOfHouse.value];
     if (value < 100000 && value > minPrices[typeOfHouse.value]) {
       return true;
     }
     return false;
   }
-
-  // изменение placeholder цены за жильё при выборе типа жилья
-  typeOfHouse.addEventListener('change', () => {
-    priceField.placeholder = minPrices[typeOfHouse.value];
-  });
 
   // сообщение об ошибке поля price
   function getPriceErrorMessage(value) {
@@ -76,6 +74,8 @@ const validate = () => {
     }
     return false;
   }
+
+  // сообщение ошибки поля количества комнат
   function getRoomsErrorMessage() {
     const room = roomsField.value;
     const guest = guestsField.value;
@@ -94,6 +94,7 @@ const validate = () => {
     }
   }
 
+  // сообщение ошибки поля количества гостей
   function getCapacityErrorMessage() {
     if (roomsField.value === '100') {
       return 'Не для гостей';
@@ -121,3 +122,4 @@ const validate = () => {
 };
 
 export { validate };
+
