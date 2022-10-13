@@ -104,8 +104,25 @@ const validate = () => {
     return `Необходимо минимум ${guestsField.value} комнаты.`;
   }
 
+  // добавление синхронизации полей время заезда время выезда
   pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
   pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
+
+  const timeInField = document.querySelector('#timein');
+  const timeOutField = document.querySelector('#timeout');
+
+  const validateTimeIn = () => {
+    timeOutField.value = timeInField.value;
+    return true;
+  };
+
+  const validateTimeOut = () => {
+    timeInField.value = timeOutField.value;
+    return true;
+  };
+
+  pristine.addValidator(timeInField, validateTimeIn);
+  pristine.addValidator(timeOutField, validateTimeOut);
 
   advertForm.addEventListener('change', (evt) => {
     if (!pristine.validate()) {
