@@ -8,7 +8,7 @@ const sliders = advertForm.querySelectorAll('.ad-form__slider');
 
 const setActivateForm = (elements, isEnabled) => {
   elements.forEach((element) => {
-    element.disabled = !isEnabled;
+    element.disabled = isEnabled;
   });
 };
 
@@ -19,7 +19,7 @@ const setClassForm = (isAdd) => {
 
 const modePage = (flag) => {
   setActivateForm(advertFormElements, flag);
-  setActivateForm(mapFilters, !flag);
+  setActivateForm(mapFilters, flag);
   setActivateForm(mapCheckBoxes, flag);
   setActivateForm(sliders, flag);
   setClassForm(flag);
