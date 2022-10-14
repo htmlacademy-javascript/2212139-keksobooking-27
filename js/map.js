@@ -5,8 +5,8 @@ import { createOffers } from './data.js';
 const addressField = document.querySelector('#address');
 const coordinates =
 {
-  lat: 35.675, //35.658553299865794,
-  lng: 139.75, //139.77657171642844,
+  lat: 35.675,
+  lng: 139.75,
   zoom: 12
 };
 
@@ -45,7 +45,7 @@ const mainMarker = L.marker(
 ).addTo(map);
 
 const getAddress = () => {
-  addressField.value = `Широта ${mainMarker.getLatLng().lat.toFixed(5)},` +
+  addressField.value = `широта ${mainMarker.getLatLng().lat.toFixed(5)}, ` +
     `долгота ${mainMarker.getLatLng().lng.toFixed(5)}`;
 };
 getAddress();
@@ -85,23 +85,3 @@ const offers = Array.from(createOffers);
 offers.forEach((offer) => {
   createMarker(offer);
 });
-
-// const infoNotifications = generateArrayData(10);
-// const popupsFragment = generateTemplate(infoNotifications);
-
-// const greatenPinMarkers = (similarOffers) => {
-//   for (let i = 0; i < similarOffers.length; i++) {
-//     L.marker(
-//       {
-//         lat: similarOffers[i].location.lat,
-//         lng: similarOffers[i].location.lng,
-//       },
-//       {
-//         icon: pinIcon
-//       })
-//       .bindPopup(similarOffers.children[i])
-//       .addTo(markerGroup);
-//   }
-// };
-
-// greatenPinMarkers(similarListFragments);

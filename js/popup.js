@@ -7,6 +7,10 @@ const fragmentTemplate = document.createDocumentFragment();
 
 const popupOffer = ({ author, offer, location }) => {
 
+  if (fragmentTemplate.children) {
+    fragmentTemplate.replaceChildren();
+  }
+
   const offerCloneElement = similarOffersTemplate.cloneNode(true);
 
   const setHidden = (selector) =>

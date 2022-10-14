@@ -69,7 +69,7 @@ const LNG = {
 };
 
 const PRECISION = 5; // точность = количество цифр после точки
-const SIMILAR_OFFER_COUNT = 9;
+const SIMILAR_OFFER_COUNT = 10;
 
 const getRandomArrayElement = (elements) =>
   elements[getRandomPositiveInteger(0, elements.length - 1)];
@@ -79,7 +79,7 @@ const getRandomArrayMinMax = (elements) =>
 
 const createOfferArray = (index) => {
 
-  const offer = {
+  const ads = {
 
     author: {
       avatar: `img/avatars/user${index < 9 ? '0' : ''}${index + 1}.png`
@@ -103,7 +103,7 @@ const createOfferArray = (index) => {
       lng: getRandomPositiveFloat(LNG.MIN, LNG.MAX, PRECISION)
     }
   };
-  return offer;
+  return ads;
 };
 
 
