@@ -45,43 +45,37 @@ const mainMarker = L.marker(
 ).addTo(map);
 
 const getAddress = () => {
-  addressField.value = `широта ${mainMarker.getLatLng().lat.toFixed(5)}, ` +
+  addressField.value =
+    `широта ${mainMarker.getLatLng().lat.toFixed(5)}, ` +
     `долгота ${mainMarker.getLatLng().lng.toFixed(5)}`;
 };
+
 getAddress();
 
 mainMarker.on('moveend', () => {
   getAddress();
 });
 
-const pinIcon = L.icon(
-  {
-    iconUrl: './img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40]
-  }
-);
-
-
-const createMarker = (offer) => {
-  const { lat, lng } = offer.location;
-  const marker = L.marker(
-    {
-      lat,
-      lng,
-    },
-    {
-      pinIcon,
-    },
-  );
-
-  marker
-    .addTo(markerGroup)
-    .bindPopup(popupOffer(offer));
-};
+const pinIcon = L.icon({
+  iconUrl: './img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
+});
 
 const offers = Array.from(createOffers);
 
 offers.forEach((offer) => {
-  createMarker(offer);
+  const { lat, lng } = offer.location;
+  const marker = L.marker(
+    {
+      lat: lat,
+      lng: lng,
+    },
+    {
+      icon: pinIcon
+    },
+  );
+  marker
+    .addTo(markerGroup)
+    .bindPopup(popupOffer(offer));
 });
