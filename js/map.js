@@ -50,7 +50,7 @@ const mainMarker = L.marker(
   }
 ).addTo(map);
 
-// фукция добавления координат в поле адреса
+// функция добавления координат в поле адреса
 const getAddress = () => {
   addressField.value =
     `широта ${mainMarker.getLatLng().lat.toFixed(5)}, ` +
@@ -76,7 +76,7 @@ const pinIcon = L.icon({
 const offers = Array.from(createOffers);
 
 // добавляем маркеры, объекты, балуны на карту.
-offers.forEach((offer) => {
+const createMarker = (offer) => {
   const { lat, lng } = offer.location;
   const marker = L.marker(
     {
@@ -90,4 +90,6 @@ offers.forEach((offer) => {
   marker
     .addTo(markerGroup)
     .bindPopup(popupOffer(offer));
-});
+};
+
+offers.forEach((offer) => createMarker(offer));
