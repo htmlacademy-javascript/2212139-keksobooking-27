@@ -69,7 +69,7 @@ const LNG = {
 };
 
 const PRECISION = 5; // точность = количество цифр после точки
-const SIMILAR_OFFER_COUNT = 9;
+const SIMILAR_OFFER_COUNT = 10;
 
 const getRandomArrayElement = (elements) =>
   elements[getRandomPositiveInteger(0, elements.length - 1)];
@@ -77,37 +77,36 @@ const getRandomArrayElement = (elements) =>
 const getRandomArrayMinMax = (elements) =>
   getRandomPositiveInteger(elements.MIN, elements.MAX);
 
-const createOfferArray = (count) => {
-  const offers = [];
-  for (let i = 0; i < count; i++) {
-    const objOffer = {
-      author: {
-        avatar: `img/avatars/user${count < 9 ? '0' : ''}${count + 1}.png`
-      },
-      offer: {
-        title: 'Предложение',
-        address: `${getRandomPositiveFloat(LAT.MIN, LAT.MAX, PRECISION)},
+const createOfferArray = (index) => {
+
+  const ads = {
+
+    author: {
+      avatar: `img/avatars/user${index < 9 ? '0' : ''}${index + 1}.png`
+    },
+    offer: {
+      title: 'Предложение',
+      address: `${getRandomPositiveFloat(LAT.MIN, LAT.MAX, PRECISION)},
               ${getRandomPositiveFloat(LNG.MIN, LNG.MAX, PRECISION)}`,
-        price: getRandomArrayMinMax(PRICE),
-        type: TYPE_OF_ROOMS[getRandomArrayElement(TYPES)],
-        rooms: getRandomArrayMinMax(ROOMS),
-        quests: getRandomArrayMinMax(GUEST),
-        checkin: getRandomArrayElement(CHECKINS),
-        checkout: getRandomArrayElement(CHECKINS),
-        features: getRandomArray(FEATURES),
-        description: getRandomArrayElement(DESCRIPTION),
-        photos: getRandomArray(PHOTOS)
-      },
-      location: {
-        lat: getRandomPositiveFloat(LAT.MIN, LAT.MAX, PRECISION),
-        lng: getRandomPositiveFloat(LNG.MIN, LNG.MAX, PRECISION)
-      }
-    };
-    offers.push(objOffer);
-  }
-  return offers;
+      price: getRandomArrayMinMax(PRICE),
+      type: TYPE_OF_ROOMS[getRandomArrayElement(TYPES)],
+      rooms: getRandomArrayMinMax(ROOMS),
+      quests: getRandomArrayMinMax(GUEST),
+      checkin: getRandomArrayElement(CHECKINS),
+      checkout: getRandomArrayElement(CHECKINS),
+      features: getRandomArray(FEATURES),
+      description: getRandomArrayElement(DESCRIPTION),
+      photos: getRandomArray(PHOTOS)
+    },
+    location: {
+      lat: getRandomPositiveFloat(LAT.MIN, LAT.MAX, PRECISION),
+      lng: getRandomPositiveFloat(LNG.MIN, LNG.MAX, PRECISION)
+    }
+  };
+  return ads;
 };
 
-const createOffers = () => createOfferArray(SIMILAR_OFFER_COUNT);
+
+const createOffers = Array.from({ length: SIMILAR_OFFER_COUNT }, (_, index) => createOfferArray(index));
 
 export { createOffers };

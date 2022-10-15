@@ -1,16 +1,8 @@
+import { priceField, validatePrice, getPriceErrorMessage } from './price.js';
+
 const validate = () => {
   // ссылка на форму и поле типа жилья
   const advertForm = document.querySelector('.ad-form');
-  const typeOfHouse = advertForm.querySelector('#type');
-
-  // объект для установки минимальной цены поля цены за ночь
-  const minPrices = {
-    'bungalow': 0,
-    'flat': 1000,
-    'hotel': 3000,
-    'house': 5000,
-    'palace': 10000,
-  };
 
   // создаем экземпляр валидатора
   const pristine = new Pristine(advertForm, {
@@ -33,25 +25,7 @@ const validate = () => {
 
   // установка минимальной цены с учетом выбора типа жилья и
   // добавление проверки поля "Цена за ночь"
-  const priceField = document.querySelector('#price');
   pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
-  function validatePrice(value) {
-    priceField.placeholder = minPrices[typeOfHouse.value];
-    if (value < 100000 && value > minPrices[typeOfHouse.value]) {
-      return true;
-    }
-    return false;
-  }
-
-  // сообщение об ошибке поля price
-  function getPriceErrorMessage(value) {
-    if (value > 100000) {
-      return 'Максимальная цена 100 000 рублей';
-    }
-    if (value < minPrices[typeOfHouse.value]) {
-      return `Минимальная цена ${minPrices[typeOfHouse.value]} рублей`;
-    }
-  }
 
   // добавление проверки полей "Количество комнат" и "Количество мест"
   const roomsField = document.querySelector('[name="rooms"]');
@@ -104,10 +78,10 @@ const validate = () => {
     return `Необходимо минимум ${guestsField.value} комнаты.`;
   }
 
-  // добавление синхронизации полей время заезда время выезда
   pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
   pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
 
+  // добавление синхронизации полей время заезда время выезда
   const timeInField = document.querySelector('#timein');
   const timeOutField = document.querySelector('#timeout');
 

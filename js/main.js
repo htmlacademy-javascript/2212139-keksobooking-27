@@ -1,19 +1,13 @@
-import { similarListFragment } from './popup.js';
+
 import { validate } from './validate.js';
-// import { modePage } from './mode.js';
+import { createMarker } from './map.js';
+import { modePage } from './mode.js';
+import { createOffers } from './data.js';
 
-
-document.querySelector('#map-canvas').appendChild(similarListFragment);
 
 const button = document.querySelector('.ad-form__submit');
-
 button.addEventListener('click', () => validate());
+modePage(false);
 
-
-// let toggle = true;
-
-// document.onclick = () => {
-//   modePage(toggle);
-//   toggle = !toggle;
-// };
-
+const offers = Array.from(createOffers);
+offers.forEach((offer) => createMarker(offer));

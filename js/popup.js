@@ -1,25 +1,21 @@
-import { createOffers } from './data.js';
 
-const similarOffersTemplate = document.querySelector('#card')
-  .content
-  .querySelector('.popup');
+const popupOffer = ({ author, offer, location }) => {
 
-const similarOffers = createOffers();
+  const similarOffersTemplate = document.querySelector('#card')
+    .content
+    .querySelector('.popup');
 
-const similarListFragment = document.createDocumentFragment();
+  const offerCloneElement = similarOffersTemplate.cloneNode(true);
 
+  const setHidden = (selector) =>
+    offerCloneElement.querySelector(selector).classList.add('hidden');
 
-similarOffers.forEach(({ author, offer }) => {
-
-  const offerElement = similarOffersTemplate.cloneNode(true);
-
-  const setHidden = (selector) => offerElement.querySelector(selector).classList.add('hidden');
-  const setTextContent = (selector) => offerElement.querySelector(selector);
+  const setTextContent = (selector) => offerCloneElement.querySelector(selector);
 
   if (!author.avatar) {
     setHidden('.popup__avatar');
   } else {
-    offerElement.querySelector('.popup__avatar').src = author.avatar;
+    offerCloneElement.querySelector('.popup__avatar').src = author.avatar;
   }
 
   if (!offer.title) {
@@ -31,7 +27,8 @@ similarOffers.forEach(({ author, offer }) => {
   if (!offer.address) {
     setHidden('.popup__text--address');
   } else {
-    setTextContent('.popup__text--address').textContent = offer.address;
+    setTextContent('.popup__text--address').textContent =
+      `Географические координаты: широта: ${location.lat}, долгота: ${location.lng}`;
   }
 
   if (!offer.price) {
@@ -66,7 +63,7 @@ similarOffers.forEach(({ author, offer }) => {
     setTextContent('.popup__description').textContent = offer.description;
   }
 
-  const featuresList = offerElement.querySelector('.popup__features');
+  const featuresList = offerCloneElement.querySelector('.popup__features');
   if (!offer.features.length) {
     featuresList.classList.add('hidden');
   } else {
@@ -81,7 +78,7 @@ similarOffers.forEach(({ author, offer }) => {
     featuresList.appendChild(fragment);
   }
 
-  const photosList = offerElement.querySelector('.popup__photos');
+  const photosList = offerCloneElement.querySelector('.popup__photos');
   if (!offer.photos.length) {
     photosList.classList.add('hidden');
   } else {
@@ -99,8 +96,7 @@ similarOffers.forEach(({ author, offer }) => {
     photosList.appendChild(fragment);
   }
 
-  similarListFragment.appendChild(offerElement);
-});
+  return offerCloneElement;
+};
 
-export { similarListFragment };
-
+export { popupOffer };
