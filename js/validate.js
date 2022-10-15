@@ -78,10 +78,10 @@ const validate = () => {
     return `Необходимо минимум ${guestsField.value} комнаты.`;
   }
 
-  // добавление синхронизации полей время заезда время выезда
   pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
   pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
 
+  // добавление синхронизации полей время заезда время выезда
   const timeInField = document.querySelector('#timein');
   const timeOutField = document.querySelector('#timeout');
 
