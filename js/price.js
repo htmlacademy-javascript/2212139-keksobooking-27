@@ -12,6 +12,7 @@ const minPrices = {
   'palace': 10000,
 };
 
+// создаем слайдер
 noUiSlider.create(slider, {
   start: [minPrices[typeHouse.value]],
   connect: [true, false],
@@ -21,6 +22,7 @@ noUiSlider.create(slider, {
   }
 });
 
+// событие слайдера при обновлении типа жилья
 slider.noUiSlider.on('update', (values) => {
   priceField.value = parseInt(values, 10);
 });
@@ -34,11 +36,7 @@ priceField.addEventListener('change', () => {
   }
 });
 
-
-typeHouse.addEventListener('change', () => {
-  priceField.placeholder = minPrices[typeHouse.value];
-});
-
+// вызывается при событии валидации формы
 function validatePrice(value) {
   priceField.placeholder = minPrices[typeHouse.value];
   if (value < 100000 && value > minPrices[typeHouse.value]) {
