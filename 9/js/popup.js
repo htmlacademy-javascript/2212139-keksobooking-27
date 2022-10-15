@@ -6,9 +6,6 @@ const popupOffer = ({ author, offer, location }) => {
     .querySelector('.popup');
 
   const fragmentTemplate = document.createDocumentFragment();
-  // if (fragmentTemplate.children) {
-  //   fragmentTemplate.replaceChildren();
-  // }
 
   const offerCloneElement = similarOffersTemplate.cloneNode(true);
 
@@ -100,9 +97,9 @@ const popupOffer = ({ author, offer, location }) => {
     }
     photosList.appendChild(fragment);
   }
-  fragmentTemplate.appendChild(offerCloneElement);
+  //fragmentTemplate.appendChild(offerCloneElement);
 
-  return fragmentTemplate;
+  return offerCloneElement; // fragmentTemplate;
 };
 
 export { popupOffer };

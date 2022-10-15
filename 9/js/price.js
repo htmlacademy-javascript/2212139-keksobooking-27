@@ -17,18 +17,19 @@ noUiSlider.create(slider, {
   start: [minPrices[typeHouse.value]],
   connect: [true, false],
   range: {
-    'min': 0,
-    'max': 100000
+    min: 0,
+    max: 100000
   }
 });
 
-// событие слайдера при обновлении типа жилья
+// событие слайдера при перетаскивании ползунка
 slider.noUiSlider.on('update', (values) => {
   priceField.value = parseInt(values, 10);
 });
 
 priceField.value = '';
 
+//вручную изменили цену в поле цены -> выставили ползунок слайдера
 priceField.addEventListener('change', () => {
   slider.noUiSlider.set(priceField.value);
   if (priceField.value === '0') {

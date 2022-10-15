@@ -1,6 +1,6 @@
 import { modePage } from './mode.js';
 import { popupOffer } from './popup.js';
-import { createOffers } from './data.js';
+
 
 // для установления координат маркера в поле адреса
 const addressField = document.querySelector('#address');
@@ -72,9 +72,6 @@ const pinIcon = L.icon({
   iconAnchor: [20, 40]
 });
 
-// создание объектов данных для отображения на карте
-const offers = Array.from(createOffers);
-
 // добавляем маркеры, объекты, балуны на карту.
 const createMarker = (offer) => {
   const { lat, lng } = offer.location;
@@ -92,4 +89,4 @@ const createMarker = (offer) => {
     .bindPopup(popupOffer(offer));
 };
 
-offers.forEach((offer) => createMarker(offer));
+export { createMarker };
