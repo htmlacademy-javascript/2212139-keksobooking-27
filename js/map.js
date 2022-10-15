@@ -66,6 +66,7 @@ const offers = Array.from(createOffers);
 
 offers.forEach((offer) => {
   console.log(popupOffer(offer));
+  console.log(offer);
   const { lat, lng } = offer.location;
   const marker = L.marker(
     {

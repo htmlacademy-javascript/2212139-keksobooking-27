@@ -1,15 +1,14 @@
 
-const similarOffersTemplate = document.querySelector('#card')
-  .content
-  .querySelector('.popup');
-
-const fragmentTemplate = document.createDocumentFragment();
-
 const popupOffer = ({ author, offer, location }) => {
 
-  if (fragmentTemplate.children) {
-    fragmentTemplate.replaceChildren();
-  }
+  const similarOffersTemplate = document.querySelector('#card')
+    .content
+    .querySelector('.popup');
+
+  const fragmentTemplate = document.createDocumentFragment();
+  // if (fragmentTemplate.children) {
+  //   fragmentTemplate.replaceChildren();
+  // }
 
   const offerCloneElement = similarOffersTemplate.cloneNode(true);
 
@@ -106,6 +105,4 @@ const popupOffer = ({ author, offer, location }) => {
   return fragmentTemplate;
 };
 
-
 export { popupOffer };
-
