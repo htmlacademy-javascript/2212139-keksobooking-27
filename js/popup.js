@@ -5,8 +5,6 @@ const popupOffer = ({ author, offer, location }) => {
     .content
     .querySelector('.popup');
 
-  const fragmentTemplate = document.createDocumentFragment();
-
   const offerCloneElement = similarOffersTemplate.cloneNode(true);
 
   const setHidden = (selector) =>
@@ -97,9 +95,8 @@ const popupOffer = ({ author, offer, location }) => {
     }
     photosList.appendChild(fragment);
   }
-  //fragmentTemplate.appendChild(offerCloneElement);
 
-  return offerCloneElement; // fragmentTemplate;
+  return offerCloneElement;
 };
 
 export { popupOffer };
