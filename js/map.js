@@ -65,6 +65,7 @@ const pinIcon = L.icon({
 const offers = Array.from(createOffers);
 
 offers.forEach((offer) => {
+  console.log(popupOffer(offer));
   const { lat, lng } = offer.location;
   const marker = L.marker(
     {
