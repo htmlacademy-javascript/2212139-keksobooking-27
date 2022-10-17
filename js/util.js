@@ -1,23 +1,4 @@
 
-const showAlert = (message, color) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = '100';
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = '0';
-  alertContainer.style.top = '0';
-  alertContainer.style.right = '0';
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = color;
-
-  alertContainer.textContent = message;
-
-  document.body.append(alertContainer);
-
-};
-
-
 function getRandomPositiveInteger(a, b) {
 
   if (a < 0 || b < 0) {
@@ -43,4 +24,4 @@ function getRandomPositiveFloat(a, b, precision = 1) {
 const getRandomArray = (arr) => arr.slice(getRandomPositiveInteger(0, arr.length / 2),
   getRandomPositiveInteger(arr.length / 2 + 1, arr.length - 1));
 
-export { getRandomPositiveFloat, getRandomPositiveInteger, getRandomArray, showAlert };
+export { getRandomPositiveFloat, getRandomPositiveInteger, getRandomArray };
