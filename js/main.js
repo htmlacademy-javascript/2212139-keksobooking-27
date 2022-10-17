@@ -2,12 +2,15 @@
 import { validate } from './validate.js';
 import { createMarker } from './map.js';
 import { modePage } from './mode.js';
-import { createOffers } from './data.js';
-
+import { getData } from './load.js';
+import { showAlert } from './util.js';
 
 const button = document.querySelector('.ad-form__submit');
 button.addEventListener('click', () => validate());
 modePage(false);
 
-const offers = Array.from(createOffers);
-offers.forEach((offer) => createMarker(offer));
+
+getData((offers) => {
+  offers.slice(10, 20).forEach((offer) => createMarker(offer));
+}, showAlert);
+

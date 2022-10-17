@@ -74,7 +74,8 @@ const pinIcon = L.icon({
 
 // добавляем маркеры, объекты, балуны на карту.
 const createMarker = (offer) => {
-  const { lat, lng } = offer.location;
+  const { location: { lat, lng } } = offer;
+  //const { lat, lng } = offer.location;
   const marker = L.marker(
     {
       lat: lat,
