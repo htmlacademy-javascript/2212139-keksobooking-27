@@ -65,6 +65,14 @@ mainMarker.on('moveend', () => {
   getAddress();
 });
 
+const resetMainMarker = () => {
+  mainMarker.setLatLng({
+    lat: coordinates.lat,
+    lng: coordinates.lng
+  });
+  getAddress();
+};
+
 // обычная иконка похожих адресов
 const pinIcon = L.icon({
   iconUrl: './img/pin.svg',
@@ -90,4 +98,4 @@ const createMarker = (offer) => {
     .bindPopup(popupOffer(offer));
 };
 
-export { createMarker };
+export { createMarker, resetMainMarker };
