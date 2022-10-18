@@ -25,4 +25,5 @@ const modePage = (flag) => {
   setClassForm(flag);
 };
 
-export { modePage };
+
+export { modePage, advertForm };

@@ -65,6 +65,7 @@ mainMarker.on('moveend', () => {
   getAddress();
 });
 
+// сброс координат главного маркера
 const resetMainMarker = () => {
   mainMarker.setLatLng({
     lat: coordinates.lat,
