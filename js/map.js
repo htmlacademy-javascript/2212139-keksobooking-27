@@ -1,5 +1,6 @@
 import { modePage } from './form.js';
 import { popupOffer } from './popup.js';
+import { updatePlaceHolder } from './price.js';
 
 
 // для установления координат маркера в поле адреса
@@ -17,6 +18,7 @@ const coordinates =
 const map = L.map('map-canvas')
   .on('load', () => {
     modePage(true);
+    updatePlaceHolder();
   })
   .setView({
     lat: coordinates.lat,
