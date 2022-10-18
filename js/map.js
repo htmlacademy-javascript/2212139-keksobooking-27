@@ -1,4 +1,4 @@
-import { modePage } from './mode.js';
+import { modePage } from './form.js';
 import { popupOffer } from './popup.js';
 
 

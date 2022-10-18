@@ -1,7 +1,7 @@
 
 import { pristine } from './validate.js';
 import { createMarker } from './map.js';
-import { modePage, advertForm } from './mode.js';
+import { modePage, advertForm } from './form.js';
 import { getData, sendData } from './api.js';
 import { showAlert } from './message.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
