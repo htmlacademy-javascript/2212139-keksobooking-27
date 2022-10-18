@@ -3,8 +3,7 @@ import { pristine } from './validate.js';
 import { createMarker } from './map.js';
 import { modePage, advertForm } from './form.js';
 import { getData, sendData } from './api.js';
-import { showAlert } from './message.js';
-import { showErrorMessage, showSuccessMessage } from './message.js';
+import { showErrorMessage, showSuccessMessage, showAlert } from './message.js';
 
 const submitButton = advertForm.querySelector('.ad-form__submit');
 

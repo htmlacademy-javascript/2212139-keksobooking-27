@@ -5,6 +5,7 @@ const advertFormElements = advertForm.querySelectorAll('fieldset');
 const mapFilters = document.querySelectorAll('.map__filter');
 const mapCheckBoxes = document.querySelectorAll('.map__checkbox');
 const sliders = advertForm.querySelectorAll('.ad-form__slider');
+const resetButton = document.querySelector('.ad-form__reset');
 
 const setActivateForm = (elements, isEnabled) => {
   elements.forEach((element) => {
@@ -26,4 +27,13 @@ const modePage = (flag) => {
 };
 
 
-export { modePage, advertForm };
+const resetForm = () => {
+  advertForm.reset();
+};
+
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetForm();
+});
+
+export { modePage, advertForm, resetForm };
