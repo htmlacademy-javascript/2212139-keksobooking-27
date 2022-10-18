@@ -7,6 +7,7 @@ import { showAlert } from './message.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
 
 const advertForm = document.querySelector('.ad-form');
+const submitButton = advertForm.querySelector('.ad-form__submit');
 
 modePage(false);
 
@@ -18,6 +19,8 @@ advertForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
   if (isValid) {
+    submitButton.disabled = true;
     sendData(new FormData(evt.target), showSuccessMessage, showErrorMessage);
+    submitButton.disabled = false;
   }
 });
