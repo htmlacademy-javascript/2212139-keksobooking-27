@@ -101,4 +101,5 @@ const createMarker = (offer) => {
     .bindPopup(popupOffer(offer));
 };
 
+
 export { createMarker, resetMainMarker };
