@@ -57,8 +57,8 @@ function getPriceErrorMessage(value) {
 }
 
 // для актуализации цены при загрузке страницы
-const updatePlaceHolder = () => {
-  priceField.placeholder = minPrices[typeHouse.value];
+const updatePlaceHolder = (element) => {
+  element.placeholder = minPrices[typeHouse.value];
 };
 
 export { priceField, validatePrice, getPriceErrorMessage, slider, updatePlaceHolder };

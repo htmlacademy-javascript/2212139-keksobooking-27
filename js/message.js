@@ -8,20 +8,9 @@ const errorMessageTemplate = document.querySelector('#error').content;
 
 const showAlert = (message) => {
   const alertElement = document.createElement('div');
-  alertElement.style.zIndex = '100';
-  alertElement.style.position = 'absolute';
-  alertElement.style.left = '0';
-  alertElement.style.top = '0';
-  alertElement.style.right = '0';
-  alertElement.style.padding = '10px 3px';
-  alertElement.style.fontSize = '20px';
-  alertElement.style.textAlign = 'center';
-  alertElement.style.backgroundColor = 'red';
-
+  alertElement.classList.add('alert-message');
   alertElement.textContent = message;
-
   document.body.append(alertElement);
-
   setTimeout(() => {
     alertElement.remove();
   }, ALERT_SHOW_TIME);
