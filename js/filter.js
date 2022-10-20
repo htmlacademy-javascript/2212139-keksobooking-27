@@ -1,4 +1,5 @@
 import { isNumberInRange } from './util.js';
+import { markerGroup, createMarker } from './map.js';
 
 const ANY = 'any';
 const MAX_ADS = 10;
@@ -51,7 +52,7 @@ const filterRooms = (offer) => {
   if (roomsElement.value === ANY) {
     return true;
   } else {
-    return Number(roomsElement.value) === offer.offer.rooms;
+    return +roomsElement.value === offer.offer.rooms;
   }
 };
 
@@ -59,11 +60,29 @@ const filterGuests = (offer) => {
   if (guestsElement.value === ANY) {
     return true;
   } else {
-    return guestsElement.value === String(offer.offer.guests);
+    return +guestsElement.value === offer.offer.guests;
   }
 };
 
-//filtersContainer.addEventListener('change', (evt) => {
+const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
+  .every((featureElement) => {
+    if (!featureElement.checked) {
+      return true;
+    }
+    if (!offer.offer.features) {
+      return false;
+    }
+    return offer.offer.features.includes(featureElement.value);
+  });
+
+const clickForFilter = (cb) => {
+  filtersContainer.addEventListener('change', () => {
+    markerGroup.clearLayers();
+    const temps = cb();
+    temps.forEach((offer) => createMarker(offer));
+  });
+};
+
 //console.log(evt.target.id, evt.target.value);
 
 const filterOffers = (offers) => {
@@ -71,10 +90,19 @@ const filterOffers = (offers) => {
   const tempOffers = offers.filter(filterType)
     .filter(filterPrice)
     .filter(filterRooms)
-    .filter(filterGuests);
+    .filter(filterGuests)
+    .filter(chooseFeatures);
 
-  return tempOffers.sort(compareAds);
+  return tempOffers.sort(compareAds).slice(0, MAX_ADS);
+};
+
+const resetFilters = () => {
+  typeElement.value = ANY;
+  roomsElement.value = ANY;
+  priceElement.value = ANY;
+  guestsElement.value = ANY;
+  featuresCheckBoxes.forEach((element) => { element.checked = false; });
 };
 
 
-export { filterOffers };
+export { filterOffers, clickForFilter, resetFilters };

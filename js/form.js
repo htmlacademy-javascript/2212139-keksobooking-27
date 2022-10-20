@@ -1,6 +1,8 @@
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
 import { pristine } from './validate.js';
+import { resetFilters } from './filter.js';
+import { getAddress, resetMainMarker } from './map.js';
 
 
 const map = document.querySelector('.map');
@@ -34,6 +36,9 @@ const modePage = (flag) => {
 
 const resetForm = (form) => {
   form.reset();
+  resetFilters();
+  getAddress();
+  resetMainMarker();
 };
 
 resetButton.addEventListener('click', (evt) => {

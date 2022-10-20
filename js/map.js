@@ -102,4 +102,4 @@ const createMarker = (offer) => {
 };
 
 
-export { createMarker, resetMainMarker, markerGroup };
+export { createMarker, resetMainMarker, markerGroup, getAddress };

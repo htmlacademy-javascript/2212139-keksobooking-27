@@ -43,11 +43,11 @@ const popupOffer = ({ author, offer, location }) => {
     setTextContent('.popup__type').textContent = offer.type;
   }
 
-  if (!offer.rooms || !offer.quests) {
+  if (!offer.rooms || !offer.guests) {
     setHidden('.popup__text--capacity');
   } else {
     setTextContent('.popup__text--capacity').textContent =
-      `${offer.rooms} комнаты для ${offer.quests} гостей`;
+      `${offer.rooms} комнаты для ${offer.guests} гостей`;
   }
 
   if (!offer.checkin || !offer.checkout) {
