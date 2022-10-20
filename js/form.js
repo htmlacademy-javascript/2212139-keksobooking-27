@@ -4,7 +4,6 @@ import { pristine } from './validate.js';
 import { resetFilters } from './filter.js';
 import { getAddress, resetMainMarker } from './map.js';
 
-
 const map = document.querySelector('.map');
 const advertForm = document.querySelector('.ad-form');
 const advertFormElements = advertForm.querySelectorAll('fieldset');

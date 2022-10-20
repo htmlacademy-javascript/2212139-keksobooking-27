@@ -1,8 +1,9 @@
-import { isNumberInRange } from './util.js';
+import { isNumberInRange, debounce } from './util.js';
 import { markerGroup, createMarker } from './map.js';
 
 const ANY = 'any';
 const MAX_ADS = 10;
+const RENDER_DELAY = 500;
 
 const Price = {
   'low': {
@@ -76,11 +77,11 @@ const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
   });
 
 const clickForFilter = (cb) => {
-  filtersContainer.addEventListener('change', () => {
+  filtersContainer.addEventListener('change', debounce(() => {
     markerGroup.clearLayers();
     const temps = cb();
     temps.forEach((offer) => createMarker(offer));
-  });
+  }, RENDER_DELAY));
 };
 
 //console.log(evt.target.id, evt.target.value);

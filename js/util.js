@@ -1,9 +1,27 @@
 
-
 const isNumberInRange = (number, min, max) => (min <= number && number <= max);
 
-function getRandomPositiveInteger(a, b) {
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
+
+function throttle(callback, delayBetweenFrames) {
+  let lastTime = 0;
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+}
+
+function getRandomPositiveInteger(a, b) {
   if (a < 0 || b < 0) {
     return NaN;
   }
@@ -24,7 +42,4 @@ function getRandomPositiveFloat(a, b, precision = 1) {
   return +result.toFixed(precision);
 }
 
-const getRandomArray = (arr) => arr.slice(getRandomPositiveInteger(0, arr.length / 2),
-  getRandomPositiveInteger(arr.length / 2 + 1, arr.length - 1));
-
-export { getRandomPositiveFloat, getRandomPositiveInteger, getRandomArray, isNumberInRange };
+export { getRandomPositiveFloat, getRandomPositiveInteger, isNumberInRange, debounce, throttle };
