@@ -1,4 +1,3 @@
-import { resetForm } from './form.js';
 
 const URL = 'https://26.javascript.pages.academy/keksobooking/data';
 
@@ -31,7 +30,6 @@ const sendData = async (formData, onSuccess, onFail) => {
       throw new Error('Не удалось отправить форму. Попробуйте ещё раз');
     }
     onSuccess();
-    resetForm();
   } catch (error) {
     onFail(error.message);
   }

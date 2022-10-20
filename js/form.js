@@ -49,6 +49,7 @@ const formSubmit = (form) => {
       submitButton.disabled = true;
       sendData(new FormData(evt.target), showSuccessMessage, showErrorMessage);
       submitButton.disabled = false;
+      resetForm(advertForm);
     }
   });
 };
