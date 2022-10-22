@@ -4,32 +4,22 @@ import { pristine } from './validate.js';
 import { resetFilters } from './filter.js';
 import { getAddress, resetMainMarker } from './map.js';
 
-const map = document.querySelector('.map');
+const mapForm = document.querySelector('.map__filters');
 const advertForm = document.querySelector('.ad-form');
-const advertFormElements = advertForm.querySelectorAll('fieldset');
-const mapFilters = document.querySelectorAll('.map__filter');
-const mapCheckBoxes = document.querySelectorAll('.map__checkbox');
-const sliders = advertForm.querySelectorAll('.ad-form__slider');
+const advertFormElements = document.querySelectorAll('select.map__filter, fieldset');
 const resetButton = document.querySelector('.ad-form__reset');
 const submitButton = advertForm.querySelector('.ad-form__submit');
 
-const setActivateForm = (elements, isEnabled) => {
-  elements.forEach((element) => {
-    element.disabled = isEnabled;
+const switchStateElement = () => {
+  advertFormElements.forEach((element) => {
+    element.disabled = !element.disabled;
   });
 };
 
-const setClassForm = (isAdd) => {
-  advertForm.classList.toggle('ad-form--disabled', isAdd);
-  map.classList.toggle('map--faded', isAdd);
-};
-
-const modePage = (flag) => {
-  setActivateForm(advertFormElements, flag);
-  setActivateForm(mapFilters, flag);
-  setActivateForm(mapCheckBoxes, flag);
-  setActivateForm(sliders, flag);
-  setClassForm(flag);
+const switchPageMode = () => {
+  advertForm.classList.toggle('ad-form--disabled');
+  mapForm.classList.toggle('map__filters--disabled');
+  switchStateElement();
 };
 
 
@@ -58,4 +48,4 @@ const formSubmit = (form) => {
   });
 };
 
-export { modePage, formSubmit, advertForm, resetForm };
+export { switchPageMode, formSubmit, resetForm, advertForm };

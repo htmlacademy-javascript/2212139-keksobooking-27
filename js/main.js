@@ -1,10 +1,10 @@
 import { createMarker, markerGroup } from './map.js';
-import { modePage, formSubmit, advertForm } from './form.js';
+import { switchPageMode, formSubmit, advertForm } from './form.js';
 import { getData } from './api.js';
 import { showAlert } from './message.js';
 import { filterOffers, clickForFilter } from './filter.js';
 
-modePage(false);
+switchPageMode();
 
 getData((offers) => {
   markerGroup.clearLayers();
