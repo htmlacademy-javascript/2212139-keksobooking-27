@@ -22,7 +22,6 @@ const switchPageMode = () => {
   switchStateElement();
 };
 
-
 const resetForm = (form) => {
   form.reset();
   resetFilters();
