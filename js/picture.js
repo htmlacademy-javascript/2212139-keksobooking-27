@@ -17,7 +17,7 @@ const addPhoto = (photoUpload, preview) => {
 
 const pictureReset = () => {
   avatarPhotoPreview.style.padding = avatarPhotoPick.style.padding;
-  avatarPhotoPreview.innerHTML = '';
+  avatarPhotoPreview.src = 'img/muffin-grey.svg';
   adPhotoPreview.innerHTML = '';
 };
 
