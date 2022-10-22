@@ -43,11 +43,11 @@ const popupOffer = ({ author, offer, location }) => {
     setTextContent('.popup__type').textContent = offer.type;
   }
 
-  if (!offer.rooms || !offer.quests) {
+  if (!offer.rooms || !offer.guests) {
     setHidden('.popup__text--capacity');
   } else {
     setTextContent('.popup__text--capacity').textContent =
-      `${offer.rooms} комнаты для ${offer.quests} гостей`;
+      `${offer.rooms} комнаты для ${offer.guests} гостей`;
   }
 
   if (!offer.checkin || !offer.checkout) {
@@ -64,25 +64,22 @@ const popupOffer = ({ author, offer, location }) => {
   }
 
   const featuresList = offerCloneElement.querySelector('.popup__features');
-  if (!offer.features.length) {
+  if (!offer.features) {
     featuresList.classList.add('hidden');
   } else {
-    const fragment = document.createDocumentFragment();
     featuresList.innerHTML = '';
     for (let i = 0; i < offer.features.length; i++) {
       const featureElement = document.createElement('li');
       featureElement.classList.add('popup__feature');
       featureElement.classList.add(`popup__feature--${offer.features[i]}`);
-      fragment.appendChild(featureElement);
+      featuresList.appendChild(featureElement);
     }
-    featuresList.appendChild(fragment);
   }
 
   const photosList = offerCloneElement.querySelector('.popup__photos');
-  if (!offer.photos.length) {
+  if (!offer.photos) {
     photosList.classList.add('hidden');
   } else {
-    const fragment = document.createDocumentFragment();
     photosList.innerHTML = '';
     for (let i = 0; i < offer.photos.length; i++) {
       const photoElement = document.createElement('img');
@@ -91,9 +88,8 @@ const popupOffer = ({ author, offer, location }) => {
       photoElement.height = '40';
       photoElement.alt = 'Фотография жилья';
       photoElement.classList.add('popup__photo');
-      fragment.appendChild(photoElement);
+      photosList.appendChild(photoElement);
     }
-    photosList.appendChild(fragment);
   }
 
   return offerCloneElement;

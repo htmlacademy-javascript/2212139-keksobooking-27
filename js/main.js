@@ -1,13 +1,16 @@
+import { createMarker, markerGroup } from './map.js';
+import { modePage, formSubmit, advertForm } from './form.js';
+import { getData } from './api.js';
+import { showAlert } from './message.js';
+import { filterOffers, clickForFilter } from './filter.js';
 
-import { validate } from './validate.js';
-import { createMarker } from './map.js';
-import { modePage } from './mode.js';
-import { createOffers } from './data.js';
-
-
-const button = document.querySelector('.ad-form__submit');
-button.addEventListener('click', () => validate());
 modePage(false);
 
-const offers = Array.from(createOffers);
-offers.forEach((offer) => createMarker(offer));
+getData((offers) => {
+  markerGroup.clearLayers();
+  const temps = filterOffers(offers);
+  temps.forEach((offer) => createMarker(offer));
+  clickForFilter(() => filterOffers(offers));
+}, showAlert);
+
+formSubmit(advertForm);
