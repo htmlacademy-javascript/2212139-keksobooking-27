@@ -33,7 +33,7 @@ const compareAds = (adsA, adsB) => {
   return rankB - rankA;
 };
 
-const filterType = (offer) => {
+const getFilterType = (offer) => {
   if (typeElement.value === ANY) {
     return true;
   } else {
@@ -41,7 +41,7 @@ const filterType = (offer) => {
   }
 };
 
-const filterPrice = (offer) => {
+const getFilterPrice = (offer) => {
   if (priceElement.value === ANY) {
     return true;
   } else {
@@ -49,7 +49,7 @@ const filterPrice = (offer) => {
   }
 };
 
-const filterRooms = (offer) => {
+const getFilterRooms = (offer) => {
   if (roomsElement.value === ANY) {
     return true;
   } else {
@@ -57,7 +57,7 @@ const filterRooms = (offer) => {
   }
 };
 
-const filterGuests = (offer) => {
+const getFilterGuests = (offer) => {
   if (guestsElement.value === ANY) {
     return true;
   } else {
@@ -79,19 +79,19 @@ const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
 const clickForFilter = (cb) => {
   filtersContainer.addEventListener('change', debounce(() => {
     markerGroup.clearLayers();
-    const temps = cb();
-    temps.forEach((offer) => createMarker(offer));
+    const filteredOffers = cb();
+    filteredOffers.forEach((offer) => createMarker(offer));
   }, RENDER_DELAY));
 };
 
 const filterOffers = (offers) => {
-  const tempOffers = offers.filter(filterType)
-    .filter(filterPrice)
-    .filter(filterRooms)
-    .filter(filterGuests)
+  const filteredOffers = offers.filter(getFilterType)
+    .filter(getFilterPrice)
+    .filter(getFilterRooms)
+    .filter(getFilterGuests)
     .filter(chooseFeatures);
 
-  return tempOffers.sort(compareAds).slice(0, MAX_ADS);
+  return filteredOffers.sort(compareAds).slice(0, MAX_ADS);
 };
 
 const resetFilters = () => {

@@ -8,8 +8,8 @@ switchPageMode();
 
 getData((offers) => {
   markerGroup.clearLayers();
-  const temps = filterOffers(offers);
-  temps.forEach((offer) => createMarker(offer));
+  const filteredOffers = filterOffers(offers);
+  filteredOffers.forEach((offer) => createMarker(offer));
   clickForFilter(() => filterOffers(offers));
 }, showAlert);
 
