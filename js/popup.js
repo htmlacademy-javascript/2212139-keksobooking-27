@@ -64,7 +64,7 @@ const popupOffer = ({ author, offer, location }) => {
   }
 
   const featuresList = offerCloneElement.querySelector('.popup__features');
-  if (!offer.features) {
+  if (!offer.features && !offer.features.length) {
     featuresList.classList.add('hidden');
   } else {
     featuresList.innerHTML = '';
@@ -77,7 +77,7 @@ const popupOffer = ({ author, offer, location }) => {
   }
 
   const photosList = offerCloneElement.querySelector('.popup__photos');
-  if (!offer.photos) {
+  if (!offer.photos && !offer.photos.length) {
     photosList.classList.add('hidden');
   } else {
     photosList.innerHTML = '';

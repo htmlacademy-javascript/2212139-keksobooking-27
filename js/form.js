@@ -3,6 +3,7 @@ import { showErrorMessage, showSuccessMessage } from './message.js';
 import { pristine } from './validate.js';
 import { resetFilters } from './filter.js';
 import { getAddress, resetMainMarker } from './map.js';
+import { pictureReset } from './picture.js';
 
 const mapForm = document.querySelector('.map__filters');
 const advertForm = document.querySelector('.ad-form');
@@ -27,6 +28,7 @@ const resetForm = (form) => {
   resetFilters();
   getAddress();
   resetMainMarker();
+  pictureReset();
 };
 
 resetButton.addEventListener('click', (evt) => {
