@@ -53,7 +53,7 @@ const getFilterRooms = (offer) => {
   if (roomsElement.value === ANY) {
     return true;
   } else {
-    return +roomsElement.value === offer.offer.rooms;
+    return Number(roomsElement.value) === offer.offer.rooms;
   }
 };
 
@@ -61,7 +61,7 @@ const getFilterGuests = (offer) => {
   if (guestsElement.value === ANY) {
     return true;
   } else {
-    return +guestsElement.value === offer.offer.guests;
+    return Number(guestsElement.value) === offer.offer.guests;
   }
 };
 
