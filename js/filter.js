@@ -84,10 +84,7 @@ const clickForFilter = (cb) => {
   }, RENDER_DELAY));
 };
 
-//console.log(evt.target.id, evt.target.value);
-
 const filterOffers = (offers) => {
-
   const tempOffers = offers.filter(filterType)
     .filter(filterPrice)
     .filter(filterRooms)
@@ -104,6 +101,5 @@ const resetFilters = () => {
   guestsElement.value = ANY;
   featuresCheckBoxes.forEach((element) => { element.checked = false; });
 };
-
 
 export { filterOffers, clickForFilter, resetFilters };

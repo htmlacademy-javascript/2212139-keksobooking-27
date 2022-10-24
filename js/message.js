@@ -1,4 +1,5 @@
 
+
 const ALERT_SHOW_TIME = 5000;
 
 const bodyElement = document.querySelector('body');

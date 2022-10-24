@@ -1,4 +1,4 @@
-import { modePage } from './form.js';
+import { switchPageMode } from './form.js';
 import { popupOffer } from './popup.js';
 import { updatePlaceHolder, priceField } from './price.js';
 
@@ -17,7 +17,7 @@ const coordinates =
 // создаем и устанавливаем карту
 const map = L.map('map-canvas')
   .on('load', () => {
-    modePage(true);
+    switchPageMode();
     updatePlaceHolder(priceField);
   })
   .setView({
