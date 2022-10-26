@@ -1,4 +1,3 @@
-
 const popupOffer = ({ author, offer, location }) => {
 
   const similarOffersTemplate = document.querySelector('#card')
@@ -64,7 +63,7 @@ const popupOffer = ({ author, offer, location }) => {
   }
 
   const featuresList = offerCloneElement.querySelector('.popup__features');
-  if (!offer.features && !offer.features.length) {
+  if (!offer.features) {
     featuresList.classList.add('hidden');
   } else {
     featuresList.innerHTML = '';
@@ -77,7 +76,7 @@ const popupOffer = ({ author, offer, location }) => {
   }
 
   const photosList = offerCloneElement.querySelector('.popup__photos');
-  if (!offer.photos && !offer.photos.length) {
+  if (!offer.photos) {
     photosList.classList.add('hidden');
   } else {
     photosList.innerHTML = '';
