@@ -76,7 +76,7 @@ const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
     return offer.offer.features.includes(featureElement.value);
   });
 
-const clickForFilter = (cb) => {
+const onChangeFilter = (cb) => {
   filtersContainer.addEventListener('change', debounce(() => {
     markerGroup.clearLayers();
     const filteredOffers = cb();
@@ -102,4 +102,4 @@ const resetFilters = () => {
   featuresCheckBoxes.forEach((element) => { element.checked = false; });
 };
 
-export { filterOffers, clickForFilter, resetFilters };
+export { filterOffers, onChangeFilter, resetFilters };
