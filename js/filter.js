@@ -21,6 +21,8 @@ const Price = {
 };
 
 const filtersContainer = document.querySelector('.map__filters');
+const filtersFeatures = document.querySelector('.map__features');
+const mapFiltersSelectElements = filtersContainer.querySelectorAll('select');
 const typeElement = filtersContainer.querySelector('#housing-type');
 const priceElement = filtersContainer.querySelector('#housing-price');
 const roomsElement = filtersContainer.querySelector('#housing-rooms');
@@ -94,6 +96,14 @@ const filterOffers = (offers) => {
   return filteredOffers.sort(compareAds).slice(0, MAX_ADS);
 };
 
+const switchActivateFilters = () => {
+  filtersContainer.classList.toggle('map__filters--disabled');
+  filtersFeatures.disabled = !filtersFeatures.disabled;
+  mapFiltersSelectElements.forEach((element) => {
+    element.disabled = !element.disabled;
+  });
+};
+
 const resetFilters = () => {
   typeElement.value = ANY;
   roomsElement.value = ANY;
@@ -102,4 +112,4 @@ const resetFilters = () => {
   featuresCheckBoxes.forEach((element) => { element.checked = false; });
 };
 
-export { filterOffers, onChangeFilter, resetFilters };
+export { filterOffers, onChangeFilter, resetFilters, switchActivateFilters };
