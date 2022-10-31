@@ -4,7 +4,6 @@ import {
   getRoomsErrorMessage, getCapacityErrorMessage
 } from './room.js';
 
-
 const advertForm = document.querySelector('.ad-form');
 const title = advertForm.querySelector('#title');
 const timeInField = document.querySelector('#timein');
@@ -18,7 +17,7 @@ const pristine = new Pristine(advertForm, {
   errorTextParent: 'ad-form__element',
   errorTextTag: 'span',
   errorTextClass: 'text-help'
-});
+}, true);
 
 //  функция проверки "Заголовок объявления"
 function validateTitle(value) {
@@ -40,7 +39,7 @@ pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage
 pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
 pristine.addValidator(timeInField, validateTimeIn);
 pristine.addValidator(timeOutField, validateTimeOut);
-pristine.addValidator(title, validateTitle, 'От 30 до 100 символов');
+pristine.addValidator(title, validateTitle);
 
 advertForm.addEventListener('change', (evt) => {
   if (!pristine.validate()) {
@@ -55,6 +54,4 @@ advertForm.addEventListener('submit', (evt) => {
   }
 });
 
-
 export { pristine };
-

@@ -1,5 +1,4 @@
 
-
 // добавление проверки полей "Количество комнат" и "Количество мест"
 const roomsField = document.querySelector('[name="rooms"]');
 const guestsField = document.querySelector('[name="capacity"]');
@@ -11,6 +10,7 @@ const roomsOption = {
   3: ['1', '2', '3'],
   100: ['0']
 };
+
 // проверка валидности полей комнат - мест
 function validateRoomsAndCapacity() {
   if (roomsOption[roomsField.value] === 100 && guestsField.value === '0') {

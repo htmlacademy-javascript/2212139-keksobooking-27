@@ -195,7 +195,11 @@
               name="username"
               placeholder="Милая, уютная квартирка в центре Токио"
               required
-              data-pristine-required-message="Обязательное поле"
+              minlength="30"
+              maxlength="100"
+              data-pristine-required-message="Это поле должно быть заполнено"
+              data-pristine-minlength-message="Минимальная длинна 30 символов"
+              data-pristine-maxlength-message="Максимальная длинна 100 символов"
             />
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--wide">
@@ -228,7 +232,10 @@
               type="number"
               placeholder="0"
               required
-              data-pristine-required-message="Обязательное поле"
+              min="0"
+              max="100000"
+              data-pristine-required-message="Это поле должно быть заполнено"
+              data-pristine-max-message="Максимальная цена 100 000 рублей"
             />
             <div class="ad-form__slider"></div>
           </fieldset>

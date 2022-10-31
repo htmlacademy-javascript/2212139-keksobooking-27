@@ -90,7 +90,6 @@ const popupOffer = ({ author, offer, location }) => {
       photosList.appendChild(photoElement);
     }
   }
-
   return offerCloneElement;
 };
 

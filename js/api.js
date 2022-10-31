@@ -13,7 +13,6 @@ const getData = async (onSuccess, onFail) => {
     onSuccess(offers);
   } catch (error) {
     onFail(error.message);
-
   }
 };
 

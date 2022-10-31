@@ -1,10 +1,8 @@
 
 const ALERT_SHOW_TIME = 5000;
-
 const bodyElement = document.querySelector('body');
 const successMessageTemplate = document.querySelector('#success').content;
 const errorMessageTemplate = document.querySelector('#error').content;
-
 
 const showAlert = (message) => {
   const alertElement = document.createElement('div');
@@ -47,7 +45,6 @@ function onErrorMessageEscKeydown(evt) {
 const showSuccessMessage = () => {
   const successMessageFragment = document.createDocumentFragment();
   const successMessageElement = successMessageTemplate.cloneNode(true);
-
   successMessageFragment.appendChild(successMessageElement);
   bodyElement.appendChild(successMessageFragment);
   document.addEventListener('keydown', onSuccessMessageEscKeydown);
