@@ -1,4 +1,4 @@
-import { priceField, validatePrice, getPriceErrorMessage } from './price.js';
+import { priceField, validatePrice, getPriceErrorMessage, updatePlaceHolder } from './price.js';
 import {
   guestsField, roomsField, validateRoomsAndCapacity,
   getRoomsErrorMessage, getCapacityErrorMessage
@@ -45,6 +45,7 @@ advertForm.addEventListener('change', (evt) => {
   if (!pristine.validate()) {
     evt.preventDefault();
   }
+  updatePlaceHolder(priceField);
 });
 
 // событие, по которому происходит проверка формы

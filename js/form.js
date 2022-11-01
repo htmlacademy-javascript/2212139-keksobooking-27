@@ -4,6 +4,7 @@ import { pristine } from './validate.js';
 import { resetFilters } from './filter.js';
 import { getAddress, resetMainMarker } from './map.js';
 import { pictureReset } from './picture.js';
+import { updatePlaceHolder, priceField } from './price.js';
 
 const mapForm = document.querySelector('.map__filters');
 const advertForm = document.querySelector('.ad-form');
@@ -29,6 +30,7 @@ const resetForm = (form) => {
   getAddress();
   resetMainMarker();
   pictureReset();
+  updatePlaceHolder(priceField);
 };
 
 resetButton.addEventListener('click', (evt) => {
