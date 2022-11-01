@@ -1,16 +1,16 @@
-import { priceField, validatePrice, getPriceErrorMessage, updatePlaceHolder } from './price.js';
+import { priceFieldElement, validatePrice, getPriceErrorMessage, updatePlaceHolder } from './price.js';
 import {
   guestsField, roomsField, validateRoomsAndCapacity,
   getRoomsErrorMessage, getCapacityErrorMessage
 } from './room.js';
 
-const advertForm = document.querySelector('.ad-form');
-const title = advertForm.querySelector('#title');
+const advertFormElement = document.querySelector('.ad-form');
+const title = advertFormElement.querySelector('#title');
 const timeInField = document.querySelector('#timein');
 const timeOutField = document.querySelector('#timeout');
 
 // создаем экземпляр валидатора
-const pristine = new Pristine(advertForm, {
+const pristine = new Pristine(advertFormElement, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',
   successClass: 'ad-form__element--valid',
@@ -34,22 +34,22 @@ const validateTimeOut = () => {
   return true;
 };
 
-pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
+pristine.addValidator(priceFieldElement, validatePrice, getPriceErrorMessage);
 pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
 pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
 pristine.addValidator(timeInField, validateTimeIn);
 pristine.addValidator(timeOutField, validateTimeOut);
 pristine.addValidator(title, validateTitle);
 
-advertForm.addEventListener('change', (evt) => {
+advertFormElement.addEventListener('change', (evt) => {
   if (!pristine.validate()) {
     evt.preventDefault();
   }
-  updatePlaceHolder(priceField);
+  updatePlaceHolder(priceFieldElement);
 });
 
 // событие, по которому происходит проверка формы
-advertForm.addEventListener('submit', (evt) => {
+advertFormElement.addEventListener('submit', (evt) => {
   if (!pristine.validate()) {
     evt.preventDefault();
   }

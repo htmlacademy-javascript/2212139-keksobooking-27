@@ -1,7 +1,7 @@
-const advertForm = document.querySelector('.ad-form');
-const typeHouse = advertForm.querySelector('#type');
-const priceField = advertForm.querySelector('#price');
-const slider = advertForm.querySelector('.ad-form__slider');
+const advertFormElement = document.querySelector('.ad-form');
+const typeHouseElement = advertFormElement.querySelector('#type');
+const priceFieldElement = advertFormElement.querySelector('#price');
+const sliderElement = advertFormElement.querySelector('.ad-form__slider');
 
 // объект для установки минимальной цены поля цены за ночь
 const minPrices = {
@@ -13,8 +13,8 @@ const minPrices = {
 };
 
 // создаем слайдер
-noUiSlider.create(slider, {
-  start: [minPrices[typeHouse.value]],
+noUiSlider.create(sliderElement, {
+  start: [minPrices[typeHouseElement.value]],
   connect: [true, false],
   range: {
     min: 0,
@@ -23,24 +23,24 @@ noUiSlider.create(slider, {
 });
 
 // событие слайдера при перетаскивании ползунка
-slider.noUiSlider.on('update', (values) => {
-  priceField.value = parseInt(values, 10);
+sliderElement.noUiSlider.on('update', (values) => {
+  priceFieldElement.value = parseInt(values, 10);
 });
 
-priceField.value = '';
+priceFieldElement.value = '';
 
 //вручную изменили цену в поле цены -> выставили ползунок слайдера
-priceField.addEventListener('change', () => {
-  slider.noUiSlider.set(priceField.value);
-  if (priceField.value === '0') {
-    priceField.value = '';
+priceFieldElement.addEventListener('change', () => {
+  sliderElement.noUiSlider.set(priceFieldElement.value);
+  if (priceFieldElement.value === '0') {
+    priceFieldElement.value = '';
   }
 });
 
 // вызывается при событии валидации формы
 function validatePrice(value) {
-  priceField.placeholder = minPrices[typeHouse.value];
-  if (value < 100000 && value > minPrices[typeHouse.value]) {
+  priceFieldElement.placeholder = minPrices[typeHouseElement.value];
+  if (value < 100000 && value > minPrices[typeHouseElement.value]) {
     return true;
   }
   return false;
@@ -51,14 +51,14 @@ function getPriceErrorMessage(value) {
   if (value > 100000) {
     return 'Максимальная цена 100 000 рублей';
   }
-  if (value < minPrices[typeHouse.value]) {
-    return `Минимальная цена ${minPrices[typeHouse.value]} рублей`;
+  if (value < minPrices[typeHouseElement.value]) {
+    return `Минимальная цена ${minPrices[typeHouseElement.value]} рублей`;
   }
 }
 
 // для актуализации цены при загрузке страницы
 const updatePlaceHolder = (element) => {
-  element.placeholder = minPrices[typeHouse.value];
+  element.placeholder = minPrices[typeHouseElement.value];
 };
 
-export { priceField, validatePrice, getPriceErrorMessage, slider, updatePlaceHolder };
+export { priceFieldElement, validatePrice, getPriceErrorMessage, sliderElement as slider, updatePlaceHolder };

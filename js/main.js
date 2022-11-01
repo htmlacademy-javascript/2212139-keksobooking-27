@@ -1,5 +1,5 @@
 import { createMarker, markerGroup } from './map.js';
-import { switchPageMode, formSubmit, advertForm } from './form.js';
+import { switchPageMode, formSubmit, advertFormElement } from './form.js';
 import { getData } from './api.js';
 import { showAlert } from './message.js';
 import { filterOffers, onChangeFilter, switchActivateFilters } from './filter.js';
@@ -15,4 +15,4 @@ getData((offers) => {
   onChangeFilter(() => filterOffers(offers));
 }, showAlert);
 
-formSubmit(advertForm);
+formSubmit(advertFormElement);

@@ -20,14 +20,14 @@ const Price = {
   },
 };
 
-const filtersContainer = document.querySelector('.map__filters');
-const filtersFeatures = document.querySelector('.map__features');
-const mapFiltersSelectElements = filtersContainer.querySelectorAll('select');
-const typeElement = filtersContainer.querySelector('#housing-type');
-const priceElement = filtersContainer.querySelector('#housing-price');
-const roomsElement = filtersContainer.querySelector('#housing-rooms');
-const guestsElement = filtersContainer.querySelector('#housing-guests');
-const featuresCheckBoxes = filtersContainer.querySelectorAll('input[name="features"]');
+const filtersContainerElement = document.querySelector('.map__filters');
+const filtersFeaturesElement = document.querySelector('.map__features');
+const mapFiltersSelectElements = filtersContainerElement.querySelectorAll('select');
+const typeElement = filtersContainerElement.querySelector('#housing-type');
+const priceElement = filtersContainerElement.querySelector('#housing-price');
+const roomsElement = filtersContainerElement.querySelector('#housing-rooms');
+const guestsElement = filtersContainerElement.querySelector('#housing-guests');
+const featuresCheckBoxesElements = filtersContainerElement.querySelectorAll('input[name="features"]');
 
 const compareAds = (adsA, adsB) => {
   const rankA = adsA.offer.features ? adsA.offer.features.length : 0;
@@ -67,7 +67,7 @@ const getFilterGuests = (offer) => {
   }
 };
 
-const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
+const chooseFeatures = (offer) => Array.from(featuresCheckBoxesElements)
   .every((featureElement) => {
     if (!featureElement.checked) {
       return true;
@@ -79,7 +79,7 @@ const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
   });
 
 const onChangeFilter = (cb) => {
-  filtersContainer.addEventListener('change', debounce(() => {
+  filtersContainerElement.addEventListener('change', debounce(() => {
     markerGroup.clearLayers();
     const filteredOffers = cb();
     filteredOffers.forEach((offer) => createMarker(offer));
@@ -97,8 +97,8 @@ const filterOffers = (offers) => {
 };
 
 const switchActivateFilters = () => {
-  filtersContainer.classList.toggle('map__filters--disabled');
-  filtersFeatures.disabled = !filtersFeatures.disabled;
+  filtersContainerElement.classList.toggle('map__filters--disabled');
+  filtersFeaturesElement.disabled = !filtersFeaturesElement.disabled;
   mapFiltersSelectElements.forEach((element) => {
     element.disabled = !element.disabled;
   });
@@ -109,7 +109,7 @@ const resetFilters = () => {
   roomsElement.value = ANY;
   priceElement.value = ANY;
   guestsElement.value = ANY;
-  featuresCheckBoxes.forEach((element) => { element.checked = false; });
+  featuresCheckBoxesElements.forEach((element) => { element.checked = false; });
 };
 
 export { filterOffers, onChangeFilter, resetFilters, switchActivateFilters };
