@@ -1,13 +1,13 @@
 import { priceFieldElement, validatePrice, getPriceErrorMessage, updatePlaceHolder } from './price.js';
 import {
-  guestsField, roomsField, validateRoomsAndCapacity,
+  guestsFieldElement, roomsFieldElement, validateRoomsAndCapacity,
   getRoomsErrorMessage, getCapacityErrorMessage
 } from './room.js';
 
 const advertFormElement = document.querySelector('.ad-form');
-const title = advertFormElement.querySelector('#title');
-const timeInField = document.querySelector('#timein');
-const timeOutField = document.querySelector('#timeout');
+const titleElement = advertFormElement.querySelector('#title');
+const timeInFieldElement = document.querySelector('#timein');
+const timeOutFieldElement = document.querySelector('#timeout');
 
 // создаем экземпляр валидатора
 const pristine = new Pristine(advertFormElement, {
@@ -25,21 +25,21 @@ function validateTitle(value) {
 }
 // принудительная синхронизация полей время заезда-выезда
 const validateTimeIn = () => {
-  timeOutField.value = timeInField.value;
+  timeOutFieldElement.value = timeInFieldElement.value;
   return true;
 };
 // принудительная синхронизация полей время заезда-выезда
 const validateTimeOut = () => {
-  timeInField.value = timeOutField.value;
+  timeInFieldElement.value = timeOutFieldElement.value;
   return true;
 };
 
 pristine.addValidator(priceFieldElement, validatePrice, getPriceErrorMessage);
-pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
-pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
-pristine.addValidator(timeInField, validateTimeIn);
-pristine.addValidator(timeOutField, validateTimeOut);
-pristine.addValidator(title, validateTitle);
+pristine.addValidator(roomsFieldElement, validateRoomsAndCapacity, getRoomsErrorMessage);
+pristine.addValidator(guestsFieldElement, validateRoomsAndCapacity, getCapacityErrorMessage);
+pristine.addValidator(timeInFieldElement, validateTimeIn);
+pristine.addValidator(timeOutFieldElement, validateTimeOut);
+pristine.addValidator(titleElement, validateTitle);
 
 advertFormElement.addEventListener('change', (evt) => {
   if (!pristine.validate()) {

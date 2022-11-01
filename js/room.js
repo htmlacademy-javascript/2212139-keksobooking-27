@@ -1,7 +1,7 @@
 
 // добавление проверки полей "Количество комнат" и "Количество мест"
-const roomsField = document.querySelector('[name="rooms"]');
-const guestsField = document.querySelector('[name="capacity"]');
+const roomsFieldElement = document.querySelector('[name="rooms"]');
+const guestsFieldElement = document.querySelector('[name="capacity"]');
 
 // таблица для создания логики проверки комнат-мест
 const roomsOption = {
@@ -13,10 +13,10 @@ const roomsOption = {
 
 // проверка валидности полей комнат - мест
 function validateRoomsAndCapacity() {
-  if (roomsOption[roomsField.value] === 100 && guestsField.value === '0') {
+  if (roomsOption[roomsFieldElement.value] === 100 && guestsFieldElement.value === '0') {
     return true;
   }
-  else if (roomsOption[roomsField.value].includes(guestsField.value)) {
+  else if (roomsOption[roomsFieldElement.value].includes(guestsFieldElement.value)) {
     return true;
   }
   return false;
@@ -24,8 +24,8 @@ function validateRoomsAndCapacity() {
 
 // сообщение ошибки поля количества комнат
 function getRoomsErrorMessage() {
-  const room = roomsField.value;
-  const guest = guestsField.value;
+  const room = roomsFieldElement.value;
+  const guest = guestsFieldElement.value;
 
   if (room === '100' && guest !== '0') {
     return 'Не для гостей';
@@ -43,12 +43,12 @@ function getRoomsErrorMessage() {
 
 // сообщение ошибки поля количества гостей
 function getCapacityErrorMessage() {
-  if (roomsField.value === '100') {
+  if (roomsFieldElement.value === '100') {
     return 'Не для гостей';
-  } else if (guestsField.value === '0') {
+  } else if (guestsFieldElement.value === '0') {
     return 'Необходимо 100 комнат';
   }
-  return `Необходимо минимум ${guestsField.value} комнаты.`;
+  return `Необходимо минимум ${guestsFieldElement.value} комнаты.`;
 }
 
-export { guestsField, roomsField, validateRoomsAndCapacity, getRoomsErrorMessage, getCapacityErrorMessage };
+export { guestsFieldElement, roomsFieldElement, validateRoomsAndCapacity, getRoomsErrorMessage, getCapacityErrorMessage };

@@ -61,4 +61,4 @@ const updatePlaceHolder = (element) => {
   element.placeholder = minPrices[typeHouseElement.value];
 };
 
-export { priceFieldElement, validatePrice, getPriceErrorMessage, sliderElement as slider, updatePlaceHolder };
+export { priceFieldElement, validatePrice, getPriceErrorMessage, updatePlaceHolder };
