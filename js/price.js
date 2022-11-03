@@ -38,20 +38,20 @@ priceFieldElement.addEventListener('change', () => {
 });
 
 // вызывается при событии валидации формы
-function validatePrice(value) {
+const validatePrice = (value) => {
   priceFieldElement.placeholder = minPrices[typeHouseElement.value];
   return value < 100000 && value > minPrices[typeHouseElement.value];
-}
+};
 
 // сообщение об ошибке поля price
-function getPriceErrorMessage(value) {
+const getPriceErrorMessage = (value) => {
   if (value > 100000) {
     return 'Максимальная цена 100 000 рублей';
   }
   if (value < minPrices[typeHouseElement.value]) {
     return `Минимальная цена ${minPrices[typeHouseElement.value]} рублей`;
   }
-}
+};
 
 // для актуализации цены при загрузке страницы
 const updatePlaceHolder = (element) => {
