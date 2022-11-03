@@ -20,9 +20,8 @@ const pristine = new Pristine(advertFormElement, {
 }, true);
 
 //  функция проверки "Заголовок объявления"
-function validateTitle(value) {
-  return value.length >= 30 && value.length <= 100;
-}
+const validateTitle = (value) => value.length >= 30 && value.length <= 100;
+
 // принудительная синхронизация полей время заезда-выезда
 const validateTimeIn = () => {
   timeOutFieldElement.value = timeInFieldElement.value;

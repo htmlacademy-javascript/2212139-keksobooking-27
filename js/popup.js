@@ -1,4 +1,4 @@
-const popupOffer = ({ author, offer, location }) => {
+const showPopupOffer = ({ author, offer, location }) => {
 
   const similarOffersTemplate = document.querySelector('#card').content.querySelector('.popup');
 
@@ -91,4 +91,4 @@ const popupOffer = ({ author, offer, location }) => {
   return offerCloneElement;
 };
 
-export { popupOffer };
+export { showPopupOffer };
