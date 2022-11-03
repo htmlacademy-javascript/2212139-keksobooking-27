@@ -12,7 +12,7 @@ const roomsOption = {
 };
 
 // проверка валидности полей комнат - мест
-function validateRoomsAndCapacity() {
+const validateRoomsAndCapacity = () => {
   if (roomsOption[roomsFieldElement.value] === 100 && guestsFieldElement.value === '0') {
     return true;
   }
@@ -20,10 +20,10 @@ function validateRoomsAndCapacity() {
     return true;
   }
   return false;
-}
+};
 
 // сообщение ошибки поля количества комнат
-function getRoomsErrorMessage() {
+const getRoomsErrorMessage = () => {
   const room = roomsFieldElement.value;
   const guest = guestsFieldElement.value;
 
@@ -39,16 +39,16 @@ function getRoomsErrorMessage() {
   if (room === '3' && guest === '0') {
     return 'для 1, 2 или 3 гостей';
   }
-}
+};
 
 // сообщение ошибки поля количества гостей
-function getCapacityErrorMessage() {
+const getCapacityErrorMessage = () => {
   if (roomsFieldElement.value === '100') {
     return 'Не для гостей';
   } else if (guestsFieldElement.value === '0') {
     return 'Необходимо 100 комнат';
   }
   return `Необходимо минимум ${guestsFieldElement.value} комнаты.`;
-}
+};
 
 export { guestsFieldElement, roomsFieldElement, validateRoomsAndCapacity, getRoomsErrorMessage, getCapacityErrorMessage };
