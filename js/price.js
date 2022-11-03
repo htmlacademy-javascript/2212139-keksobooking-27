@@ -40,10 +40,7 @@ priceFieldElement.addEventListener('change', () => {
 // вызывается при событии валидации формы
 function validatePrice(value) {
   priceFieldElement.placeholder = minPrices[typeHouseElement.value];
-  if (value < 100000 && value > minPrices[typeHouseElement.value]) {
-    return true;
-  }
-  return false;
+  return value < 100000 && value > minPrices[typeHouseElement.value];
 }
 
 // сообщение об ошибке поля price
