@@ -1,24 +1,23 @@
-import { priceField, validatePrice, getPriceErrorMessage } from './price.js';
+import { priceFieldElement, validatePrice, getPriceErrorMessage, updatePlaceHolder } from './price.js';
 import {
-  guestsField, roomsField, validateRoomsAndCapacity,
+  guestsFieldElement, roomsFieldElement, validateRoomsAndCapacity,
   getRoomsErrorMessage, getCapacityErrorMessage
 } from './room.js';
 
-
-const advertForm = document.querySelector('.ad-form');
-const title = advertForm.querySelector('#title');
-const timeInField = document.querySelector('#timein');
-const timeOutField = document.querySelector('#timeout');
+const advertFormElement = document.querySelector('.ad-form');
+const titleElement = advertFormElement.querySelector('#title');
+const timeInFieldElement = document.querySelector('#timein');
+const timeOutFieldElement = document.querySelector('#timeout');
 
 // создаем экземпляр валидатора
-const pristine = new Pristine(advertForm, {
+const pristine = new Pristine(advertFormElement, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',
   successClass: 'ad-form__element--valid',
   errorTextParent: 'ad-form__element',
   errorTextTag: 'span',
   errorTextClass: 'text-help'
-});
+}, true);
 
 //  функция проверки "Заголовок объявления"
 function validateTitle(value) {
@@ -26,35 +25,34 @@ function validateTitle(value) {
 }
 // принудительная синхронизация полей время заезда-выезда
 const validateTimeIn = () => {
-  timeOutField.value = timeInField.value;
+  timeOutFieldElement.value = timeInFieldElement.value;
   return true;
 };
 // принудительная синхронизация полей время заезда-выезда
 const validateTimeOut = () => {
-  timeInField.value = timeOutField.value;
+  timeInFieldElement.value = timeOutFieldElement.value;
   return true;
 };
 
-pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
-pristine.addValidator(roomsField, validateRoomsAndCapacity, getRoomsErrorMessage);
-pristine.addValidator(guestsField, validateRoomsAndCapacity, getCapacityErrorMessage);
-pristine.addValidator(timeInField, validateTimeIn);
-pristine.addValidator(timeOutField, validateTimeOut);
-pristine.addValidator(title, validateTitle, 'От 30 до 100 символов');
+pristine.addValidator(priceFieldElement, validatePrice, getPriceErrorMessage);
+pristine.addValidator(roomsFieldElement, validateRoomsAndCapacity, getRoomsErrorMessage);
+pristine.addValidator(guestsFieldElement, validateRoomsAndCapacity, getCapacityErrorMessage);
+pristine.addValidator(timeInFieldElement, validateTimeIn);
+pristine.addValidator(timeOutFieldElement, validateTimeOut);
+pristine.addValidator(titleElement, validateTitle);
 
-advertForm.addEventListener('change', (evt) => {
+advertFormElement.addEventListener('change', (evt) => {
   if (!pristine.validate()) {
     evt.preventDefault();
   }
+  updatePlaceHolder(priceFieldElement);
 });
 
 // событие, по которому происходит проверка формы
-advertForm.addEventListener('submit', (evt) => {
+advertFormElement.addEventListener('submit', (evt) => {
   if (!pristine.validate()) {
     evt.preventDefault();
   }
 });
 
-
 export { pristine };
-

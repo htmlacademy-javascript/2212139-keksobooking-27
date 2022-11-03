@@ -4,12 +4,13 @@ import { pristine } from './validate.js';
 import { resetFilters } from './filter.js';
 import { getAddress, resetMainMarker } from './map.js';
 import { pictureReset } from './picture.js';
+import { updatePlaceHolder, priceFieldElement } from './price.js';
 
-const mapForm = document.querySelector('.map__filters');
-const advertForm = document.querySelector('.ad-form');
+const mapFormElement = document.querySelector('.map__filters');
+const advertFormElement = document.querySelector('.ad-form');
 const advertFormElements = document.querySelectorAll('select.map__filter, fieldset');
-const resetButton = document.querySelector('.ad-form__reset');
-const submitButton = advertForm.querySelector('.ad-form__submit');
+const resetButtonElement = document.querySelector('.ad-form__reset');
+const submitButtonElement = advertFormElement.querySelector('.ad-form__submit');
 
 const switchStateElement = () => {
   advertFormElements.forEach((element) => {
@@ -18,8 +19,8 @@ const switchStateElement = () => {
 };
 
 const switchPageMode = () => {
-  advertForm.classList.toggle('ad-form--disabled');
-  mapForm.classList.toggle('map__filters--disabled');
+  advertFormElement.classList.toggle('ad-form--disabled');
+  mapFormElement.classList.toggle('map__filters--disabled');
   switchStateElement();
 };
 
@@ -29,11 +30,12 @@ const resetForm = (form) => {
   getAddress();
   resetMainMarker();
   pictureReset();
+  updatePlaceHolder(priceFieldElement);
 };
 
-resetButton.addEventListener('click', (evt) => {
+resetButtonElement.addEventListener('click', (evt) => {
   evt.preventDefault();
-  resetForm(advertForm);
+  resetForm(advertFormElement);
 });
 
 const formSubmit = (form) => {
@@ -41,12 +43,12 @@ const formSubmit = (form) => {
     evt.preventDefault();
     const isValid = pristine.validate();
     if (isValid) {
-      submitButton.disabled = true;
+      submitButtonElement.disabled = true;
       sendData(new FormData(evt.target), showSuccessMessage, showErrorMessage);
-      submitButton.disabled = false;
-      resetForm(advertForm);
+      submitButtonElement.disabled = false;
+      resetForm(advertFormElement);
     }
   });
 };
 
-export { switchPageMode, formSubmit, resetForm, advertForm };
+export { switchPageMode, formSubmit, resetForm, advertFormElement };

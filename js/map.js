@@ -1,10 +1,9 @@
 import { switchPageMode } from './form.js';
 import { popupOffer } from './popup.js';
-import { updatePlaceHolder, priceField } from './price.js';
-
+import { updatePlaceHolder, priceFieldElement } from './price.js';
 
 // для установления координат маркера в поле адреса
-const addressField = document.querySelector('#address');
+const addressFieldElement = document.querySelector('#address');
 
 // центр Токио, взял из техзадания середина диапазона координат
 const coordinates =
@@ -18,7 +17,7 @@ const coordinates =
 const map = L.map('map-canvas')
   .on('load', () => {
     switchPageMode();
-    updatePlaceHolder(priceField);
+    updatePlaceHolder(priceFieldElement);
   })
   .setView({
     lat: coordinates.lat,
@@ -54,7 +53,7 @@ const mainMarker = L.marker(
 
 // функция добавления координат в поле адреса
 const getAddress = () => {
-  addressField.value =
+  addressFieldElement.value =
     `широта ${mainMarker.getLatLng().lat.toFixed(5)}, ` +
     `долгота ${mainMarker.getLatLng().lng.toFixed(5)}`;
 };
@@ -86,7 +85,6 @@ const pinIcon = L.icon({
 // добавляем маркеры, объекты, балуны на карту.
 const createMarker = (offer) => {
   const { location: { lat, lng } } = offer;
-  //const { lat, lng } = offer.location;
   const marker = L.marker(
     {
       lat: lat,
@@ -100,6 +98,5 @@ const createMarker = (offer) => {
     .addTo(markerGroup)
     .bindPopup(popupOffer(offer));
 };
-
 
 export { createMarker, resetMainMarker, markerGroup, getAddress };

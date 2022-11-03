@@ -1,11 +1,10 @@
-
 const popupOffer = ({ author, offer, location }) => {
 
-  const similarOffersTemplate = document.querySelector('#card')
-    .content
-    .querySelector('.popup');
+  const similarOffersTemplate = document.querySelector('#card').content.querySelector('.popup');
 
   const offerCloneElement = similarOffersTemplate.cloneNode(true);
+  const photosListElement = offerCloneElement.querySelector('.popup__photos');
+  const featuresListElement = offerCloneElement.querySelector('.popup__features');
 
   const setHidden = (selector) =>
     offerCloneElement.querySelector(selector).classList.add('hidden');
@@ -63,24 +62,22 @@ const popupOffer = ({ author, offer, location }) => {
     setTextContent('.popup__description').textContent = offer.description;
   }
 
-  const featuresList = offerCloneElement.querySelector('.popup__features');
-  if (!offer.features && !offer.features.length) {
-    featuresList.classList.add('hidden');
+  if (!offer.features) {
+    featuresListElement.classList.add('hidden');
   } else {
-    featuresList.innerHTML = '';
+    featuresListElement.innerHTML = '';
     for (let i = 0; i < offer.features.length; i++) {
       const featureElement = document.createElement('li');
       featureElement.classList.add('popup__feature');
       featureElement.classList.add(`popup__feature--${offer.features[i]}`);
-      featuresList.appendChild(featureElement);
+      featuresListElement.appendChild(featureElement);
     }
   }
 
-  const photosList = offerCloneElement.querySelector('.popup__photos');
-  if (!offer.photos && !offer.photos.length) {
-    photosList.classList.add('hidden');
+  if (!offer.photos) {
+    photosListElement.classList.add('hidden');
   } else {
-    photosList.innerHTML = '';
+    photosListElement.innerHTML = '';
     for (let i = 0; i < offer.photos.length; i++) {
       const photoElement = document.createElement('img');
       photoElement.src = `${offer.photos[i]}`;
@@ -88,10 +85,9 @@ const popupOffer = ({ author, offer, location }) => {
       photoElement.height = '40';
       photoElement.alt = 'Фотография жилья';
       photoElement.classList.add('popup__photo');
-      photosList.appendChild(photoElement);
+      photosListElement.appendChild(photoElement);
     }
   }
-
   return offerCloneElement;
 };
 

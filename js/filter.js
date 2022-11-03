@@ -20,12 +20,14 @@ const Price = {
   },
 };
 
-const filtersContainer = document.querySelector('.map__filters');
-const typeElement = filtersContainer.querySelector('#housing-type');
-const priceElement = filtersContainer.querySelector('#housing-price');
-const roomsElement = filtersContainer.querySelector('#housing-rooms');
-const guestsElement = filtersContainer.querySelector('#housing-guests');
-const featuresCheckBoxes = filtersContainer.querySelectorAll('input[name="features"]');
+const filtersContainerElement = document.querySelector('.map__filters');
+const filtersFeaturesElement = document.querySelector('.map__features');
+const mapFiltersSelectElements = filtersContainerElement.querySelectorAll('select');
+const typeElement = filtersContainerElement.querySelector('#housing-type');
+const priceElement = filtersContainerElement.querySelector('#housing-price');
+const roomsElement = filtersContainerElement.querySelector('#housing-rooms');
+const guestsElement = filtersContainerElement.querySelector('#housing-guests');
+const featuresCheckBoxesElements = filtersContainerElement.querySelectorAll('input[name="features"]');
 
 const compareAds = (adsA, adsB) => {
   const rankA = adsA.offer.features ? adsA.offer.features.length : 0;
@@ -33,7 +35,7 @@ const compareAds = (adsA, adsB) => {
   return rankB - rankA;
 };
 
-const filterType = (offer) => {
+const getFilterType = (offer) => {
   if (typeElement.value === ANY) {
     return true;
   } else {
@@ -41,7 +43,7 @@ const filterType = (offer) => {
   }
 };
 
-const filterPrice = (offer) => {
+const getFilterPrice = (offer) => {
   if (priceElement.value === ANY) {
     return true;
   } else {
@@ -49,23 +51,23 @@ const filterPrice = (offer) => {
   }
 };
 
-const filterRooms = (offer) => {
+const getFilterRooms = (offer) => {
   if (roomsElement.value === ANY) {
     return true;
   } else {
-    return +roomsElement.value === offer.offer.rooms;
+    return Number(roomsElement.value) === offer.offer.rooms;
   }
 };
 
-const filterGuests = (offer) => {
+const getFilterGuests = (offer) => {
   if (guestsElement.value === ANY) {
     return true;
   } else {
-    return +guestsElement.value === offer.offer.guests;
+    return Number(guestsElement.value) === offer.offer.guests;
   }
 };
 
-const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
+const chooseFeatures = (offer) => Array.from(featuresCheckBoxesElements)
   .every((featureElement) => {
     if (!featureElement.checked) {
       return true;
@@ -76,22 +78,30 @@ const chooseFeatures = (offer) => Array.from(featuresCheckBoxes)
     return offer.offer.features.includes(featureElement.value);
   });
 
-const clickForFilter = (cb) => {
-  filtersContainer.addEventListener('change', debounce(() => {
+const onChangeFilter = (cb) => {
+  filtersContainerElement.addEventListener('change', debounce(() => {
     markerGroup.clearLayers();
-    const temps = cb();
-    temps.forEach((offer) => createMarker(offer));
+    const filteredOffers = cb();
+    filteredOffers.forEach((offer) => createMarker(offer));
   }, RENDER_DELAY));
 };
 
 const filterOffers = (offers) => {
-  const tempOffers = offers.filter(filterType)
-    .filter(filterPrice)
-    .filter(filterRooms)
-    .filter(filterGuests)
+  const filteredOffers = offers.filter(getFilterType)
+    .filter(getFilterPrice)
+    .filter(getFilterRooms)
+    .filter(getFilterGuests)
     .filter(chooseFeatures);
 
-  return tempOffers.sort(compareAds).slice(0, MAX_ADS);
+  return filteredOffers.sort(compareAds).slice(0, MAX_ADS);
+};
+
+const switchActivateFilters = () => {
+  filtersContainerElement.classList.toggle('map__filters--disabled');
+  filtersFeaturesElement.disabled = !filtersFeaturesElement.disabled;
+  mapFiltersSelectElements.forEach((element) => {
+    element.disabled = !element.disabled;
+  });
 };
 
 const resetFilters = () => {
@@ -99,7 +109,7 @@ const resetFilters = () => {
   roomsElement.value = ANY;
   priceElement.value = ANY;
   guestsElement.value = ANY;
-  featuresCheckBoxes.forEach((element) => { element.checked = false; });
+  featuresCheckBoxesElements.forEach((element) => { element.checked = false; });
 };
 
-export { filterOffers, clickForFilter, resetFilters };
+export { filterOffers, onChangeFilter, resetFilters, switchActivateFilters };

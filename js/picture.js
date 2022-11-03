@@ -1,9 +1,9 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
-const avatarPhotoPick = document.querySelector('.ad-form__field input[type=file]');
-const avatarPhotoPreview = document.querySelector('#avatar-img');
-const adPhotoPick = document.querySelector('.ad-form__upload input[type=file]');
-const adPhotoPreview = document.querySelector('.ad-form__photo');
+const avatarPhotoPickElement = document.querySelector('.ad-form__field input[type=file]');
+const avatarPhotoPreviewElement = document.querySelector('#avatar-img');
+const adPhotoPickElement = document.querySelector('.ad-form__upload input[type=file]');
+const adPhotoPreviewElement = document.querySelector('.ad-form__photo');
 
 const addPhoto = (photoUpload, preview) => {
   const file = photoUpload.files[0];
@@ -16,20 +16,20 @@ const addPhoto = (photoUpload, preview) => {
 };
 
 const pictureReset = () => {
-  avatarPhotoPreview.style.padding = avatarPhotoPick.style.padding;
-  avatarPhotoPreview.src = 'img/muffin-grey.svg';
-  adPhotoPreview.innerHTML = '';
+  avatarPhotoPreviewElement.style.padding = avatarPhotoPickElement.style.padding;
+  avatarPhotoPreviewElement.src = 'img/muffin-grey.svg';
+  adPhotoPreviewElement.innerHTML = '';
 };
 
-avatarPhotoPick.addEventListener('change', () => {
-  addPhoto(avatarPhotoPick, avatarPhotoPreview);
+avatarPhotoPickElement.addEventListener('change', () => {
+  addPhoto(avatarPhotoPickElement, avatarPhotoPreviewElement);
 });
 
-adPhotoPick.addEventListener('change', () => {
+adPhotoPickElement.addEventListener('change', () => {
   const photoPreview = document.createElement('img');
   photoPreview.style.maxHeight = '100%';
-  addPhoto(adPhotoPick, photoPreview);
-  adPhotoPreview.appendChild(photoPreview);
+  addPhoto(adPhotoPickElement, photoPreview);
+  adPhotoPreviewElement.appendChild(photoPreview);
 });
 
 export { pictureReset };
