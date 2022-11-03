@@ -1,5 +1,5 @@
 import { switchPageMode } from './form.js';
-import { popupOffer } from './popup.js';
+import { showOffer } from './popup.js';
 import { updatePlaceHolder, priceFieldElement } from './price.js';
 
 // для установления координат маркера в поле адреса
@@ -96,7 +96,7 @@ const createMarker = (offer) => {
   );
   marker
     .addTo(markerGroup)
-    .bindPopup(popupOffer(offer));
+    .bindPopup(showOffer(offer));
 };
 
 export { createMarker, resetMainMarker, markerGroup, getAddress };
