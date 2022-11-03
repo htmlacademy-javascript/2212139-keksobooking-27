@@ -38,33 +38,29 @@ const compareAds = (adsA, adsB) => {
 const getFilterType = (offer) => {
   if (typeElement.value === ANY) {
     return true;
-  } else {
-    return typeElement.value === offer.offer.type;
   }
+  return typeElement.value === offer.offer.type;
 };
 
 const getFilterPrice = (offer) => {
   if (priceElement.value === ANY) {
     return true;
-  } else {
-    return isNumberInRange(Number(offer.offer.price), Price[priceElement.value].MIN, Price[priceElement.value].MAX);
   }
+  return isNumberInRange(Number(offer.offer.price), Price[priceElement.value].MIN, Price[priceElement.value].MAX);
 };
 
 const getFilterRooms = (offer) => {
   if (roomsElement.value === ANY) {
     return true;
-  } else {
-    return Number(roomsElement.value) === offer.offer.rooms;
   }
+  return Number(roomsElement.value) === offer.offer.rooms;
 };
 
 const getFilterGuests = (offer) => {
   if (guestsElement.value === ANY) {
     return true;
-  } else {
-    return Number(guestsElement.value) === offer.offer.guests;
   }
+  return Number(guestsElement.value) === offer.offer.guests;
 };
 
 const chooseFeatures = (offer) => Array.from(featuresCheckBoxesElements)
