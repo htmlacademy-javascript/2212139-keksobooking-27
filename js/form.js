@@ -13,17 +13,29 @@ const advertFormElements = document.querySelectorAll('select.map__filter, fields
 const resetButtonElement = document.querySelector('.ad-form__reset');
 const submitButtonElement = advertFormElement.querySelector('.ad-form__submit');
 
-const switchStateElement = () => {
-  advertFormElements.forEach((element) => {
-    element.disabled = !element.disabled;
-  });
+const switchStateElement = (flag) => {
+  if (!flag) {
+    advertFormElements.forEach((element) => {
+      element.disabled = true;
+    });
+  } else {
+    advertFormElements.forEach((element) => {
+      element.disabled = false;
+    });
+  }
 };
 
-const switchPageMode = () => {
-  advertFormElement.classList.toggle('ad-form--disabled');
-  mapFormElement.classList.toggle('map__filters--disabled');
-  mapCanvasElement.classList.toggle('map__canvas--disabled');
-  switchStateElement();
+const switchPageMode = (flag) => {
+  if (!flag) {
+    advertFormElement.classList.add('ad-form--disabled');
+    mapFormElement.classList.add('map__filters--disabled');
+    mapCanvasElement.classList.add('map__canvas--disabled');
+  } else {
+    advertFormElement.classList.remove('ad-form--disabled');
+    mapFormElement.classList.remove('map__filters--disabled');
+    mapCanvasElement.classList.remove('map__canvas--disabled');
+  }
+  switchStateElement(flag);
 };
 
 const resetForm = (form) => {

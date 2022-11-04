@@ -16,7 +16,7 @@ const coordinates =
 // создаем и устанавливаем карту
 const map = L.map('map-canvas')
   .on('load', () => {
-    switchPageMode();
+    switchPageMode(false);
     updatePlaceHolder(priceFieldElement);
   })
   .setView({

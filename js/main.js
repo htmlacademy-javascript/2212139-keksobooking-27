@@ -4,11 +4,12 @@ import { getData } from './api.js';
 import { showAlertMessage } from './message.js';
 import { filterOffers, onChangeFilter, switchActivateFilters } from './filter.js';
 
-switchPageMode();
-switchActivateFilters();
-
 
 getData((offers) => {
+  if (offers.length) {
+    switchPageMode(true);
+    switchActivateFilters();
+  }
   markerGroup.clearLayers();
   const filteredOffers = filterOffers(offers);
   filteredOffers.forEach((offer) => createMarker(offer));
