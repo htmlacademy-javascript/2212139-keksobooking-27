@@ -1,5 +1,7 @@
+import { switchActivateFilters } from './filter.js';
+import { switchPageMode } from './form.js';
 
-const URL = 'https://26.javascript.pages.academy/keksobooking/data';
+const URL = 'https://26.javascript.pages.academy/keksobooking/dat';
 
 const getData = async (onSuccess, onFail) => {
   try {
@@ -13,6 +15,8 @@ const getData = async (onSuccess, onFail) => {
     onSuccess(offers);
   } catch (error) {
     onFail(error.message);
+    switchActivateFilters();
+    switchPageMode();
   }
 };
 

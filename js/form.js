@@ -7,6 +7,7 @@ import { pictureReset } from './picture.js';
 import { updatePlaceHolder, priceFieldElement } from './price.js';
 
 const mapFormElement = document.querySelector('.map__filters');
+const mapCanvasElement = document.querySelector('#map-canvas');
 const advertFormElement = document.querySelector('.ad-form');
 const advertFormElements = document.querySelectorAll('select.map__filter, fieldset');
 const resetButtonElement = document.querySelector('.ad-form__reset');
@@ -21,6 +22,7 @@ const switchStateElement = () => {
 const switchPageMode = () => {
   advertFormElement.classList.toggle('ad-form--disabled');
   mapFormElement.classList.toggle('map__filters--disabled');
+  mapCanvasElement.classList.toggle('map__canvas--disabled');
   switchStateElement();
 };
 

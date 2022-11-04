@@ -1,24 +1,21 @@
 
-const ALERT_SHOW_TIME = 5000;
 const bodyElement = document.querySelector('body');
 const successMessageTemplate = document.querySelector('#success').content;
 const errorMessageTemplate = document.querySelector('#error').content;
-
-const showAlert = (message) => {
-  const alertElement = document.createElement('div');
-  alertElement.classList.add('alert-message');
-  alertElement.textContent = message;
-  document.body.append(alertElement);
-  setTimeout(() => {
-    alertElement.remove();
-  }, ALERT_SHOW_TIME);
-};
+const alertMessageTemplate = document.querySelector('#alert').content;
 
 const closeSuccessMessage = () => {
   const successMessage = document.querySelector('.success');
   successMessage.remove();
   document.removeEventListener('keydown', onSuccessMessageEscKeydown);
   document.removeEventListener('click', closeSuccessMessage);
+};
+
+const closeAlertMessage = () => {
+  const successMessage = document.querySelector('.alert');
+  successMessage.remove();
+  document.removeEventListener('keydown', onAlertMessageEscKeydown);
+  document.removeEventListener('click', closeAlertMessage);
 };
 
 const closeErrorMessage = () => {
@@ -32,6 +29,13 @@ function onSuccessMessageEscKeydown(evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closeSuccessMessage();
+  }
+}
+
+function onAlertMessageEscKeydown(evt) {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
+    closeAlertMessage();
   }
 }
 
@@ -51,6 +55,15 @@ const showSuccessMessage = () => {
   document.addEventListener('click', closeSuccessMessage);
 };
 
+const showAlertMessage = () => {
+  const alertMessageFragment = document.createDocumentFragment();
+  const alertMessageElement = alertMessageTemplate.cloneNode(true);
+  alertMessageFragment.appendChild(alertMessageElement);
+  bodyElement.appendChild(alertMessageFragment);
+  document.addEventListener('keydown', onAlertMessageEscKeydown);
+  document.addEventListener('click', closeAlertMessage);
+};
+
 const showErrorMessage = () => {
   const errorMessageFragment = document.createDocumentFragment();
   const errorMessageElement = errorMessageTemplate.cloneNode(true);
@@ -62,4 +75,4 @@ const showErrorMessage = () => {
   document.addEventListener('click', closeErrorMessage);
 };
 
-export { showErrorMessage, showSuccessMessage, showAlert };
+export { showErrorMessage, showSuccessMessage, showAlertMessage };

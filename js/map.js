@@ -72,6 +72,10 @@ const resetMainMarker = () => {
     lat: coordinates.lat,
     lng: coordinates.lng
   });
+  map.setView({
+    lat: coordinates.lat,
+    lng: coordinates.lng
+  }, coordinates.zoom);
   getAddress();
 };
 
@@ -99,4 +103,4 @@ const createMarker = (offer) => {
     .bindPopup(showPopupOffer(offer));
 };
 
-export { createMarker, resetMainMarker, markerGroup, getAddress };
+export { createMarker, resetMainMarker, markerGroup, getAddress, map };
