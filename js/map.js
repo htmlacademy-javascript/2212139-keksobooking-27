@@ -16,7 +16,7 @@ const coordinates =
 // создаем и устанавливаем карту
 const map = L.map('map-canvas')
   .on('load', () => {
-    switchPageMode();
+    switchPageMode(false);
     updatePlaceHolder(priceFieldElement);
   })
   .setView({
@@ -72,6 +72,10 @@ const resetMainMarker = () => {
     lat: coordinates.lat,
     lng: coordinates.lng
   });
+  map.setView({
+    lat: coordinates.lat,
+    lng: coordinates.lng
+  }, coordinates.zoom);
   getAddress();
 };
 
@@ -99,4 +103,4 @@ const createMarker = (offer) => {
     .bindPopup(showPopupOffer(offer));
 };
 
-export { createMarker, resetMainMarker, markerGroup, getAddress };
+export { createMarker, resetMainMarker, markerGroup, getAddress, map };

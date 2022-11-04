@@ -84,11 +84,22 @@ fieldset {
 }
 
 .map__canvas {
+  position: relative;
   width: 100%;
   height: 500px;
   background-color: #dddddd;
 }
 
+.map__canvas--disabled::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
 
 /**
  * Фильтры объявления
@@ -944,7 +955,8 @@ fieldset {
  */
 
 .success,
-.error {
+.error,
+.alert {
   position: fixed;
   top: 0;
   left: 0;
@@ -966,7 +978,8 @@ fieldset {
 }
 
 .success__message,
-.error__message {
+.error__message,
+.alert__message {
   position: relative;
 
   color: #ffffff;
@@ -975,7 +988,8 @@ fieldset {
 }
 
 .success__message::before,
-.error__message::before {
+.error__message::before,
+.alert__message::before {
   content: "";
   position: absolute;
 
